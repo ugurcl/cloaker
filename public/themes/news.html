@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Güncel Haberler - Son Dakika Haberleri | Haber7</title>
+    <meta name="description" content="Türkiye ve dünyadan son dakika haberleri, güncel gelişmeler ve önemli haberler. Politik, ekonomik, spor ve magazin haberlerini takip edin.">
+    <meta name="keywords" content="son dakika haber, güncel haberler, türkiye haberleri, dünya haberleri, politika, ekonomi, spor, magazin, teknoloji haberleri, sağlık haberleri">
+    <meta name="author" content="Haber7 Editörlüğü">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Turkish">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <meta name="news_keywords" content="son dakika, güncel, haber, türkiye, siyaset, ekonomi">
+    <link rel="canonical" href="https://haber7.com.tr">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://haber7.com.tr">
+    <meta property="og:title" content="Güncel Haberler - Son Dakika Haberleri | Haber7">
+    <meta property="og:description" content="Türkiye ve dünyadan son dakika haberleri, güncel gelişmeler ve önemli haberler. Politik, ekonomik, spor ve magazin haberlerini takip edin.">
+    <meta property="og:image" content="https://haber7.com.tr/assets/og-news.jpg">
+    <meta property="og:site_name" content="Haber7">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="article:publisher" content="https://facebook.com/haber7">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://haber7.com.tr">
+    <meta property="twitter:title" content="Güncel Haberler - Son Dakika | Haber7">
+    <meta property="twitter:description" content="Türkiye ve dünyadan son dakika haberleri, güncel gelişmeler ve önemli haberler.">
+    <meta property="twitter:image" content="https://haber7.com.tr/assets/twitter-news.jpg">
+    <meta property="twitter:site" content="@haber7">
+    
+    <!-- News-specific SEO -->
+    <meta name="theme-color" content="#c41e3a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-news.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-news-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-news-16x16.png">
+    <link rel="manifest" href="/assets/site-news.webmanifest">
+    
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="Haber7 RSS" href="/rss.xml">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .header {
+            background: #c41e3a;
+            color: white;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .header-top {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .date-time {
+            font-size: 14px;
+        }
+        
+        .nav {
+            background: #a01729;
+            padding: 12px 0;
+            position: relative;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .nav-links a:hover::before {
+            left: 100%;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+        
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+        
+        .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+        
+        .mobile-search {
+            display: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 8px 16px;
+            color: white;
+            outline: none;
+            width: 200px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .mobile-search::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .breaking-news {
+            background: #ff4444;
+            color: white;
+            padding: 10px 0;
+            overflow: hidden;
+        }
+        
+        .breaking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .breaking-label {
+            background: white;
+            color: #ff4444;
+            padding: 5px 10px;
+            font-weight: bold;
+            margin-right: 15px;
+            border-radius: 3px;
+        }
+        
+        .breaking-text {
+            animation: scroll 30s linear infinite;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .main-content {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .featured-news {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: end;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .featured-content {
+            position: relative;
+            z-index: 2;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            width: 100%;
+        }
+        
+        .featured-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+        
+        .featured-summary {
+            font-size: 16px;
+            line-height: 1.5;
+            opacity: 0.9;
+        }
+        
+        .news-grid {
+            padding: 30px;
+        }
+        
+        .news-item {
+            display: flex;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-image {
+            width: 120px;
+            height: 80px;
+            background: #ddd;
+            border-radius: 5px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .news-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .news-meta {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .news-summary {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .widget {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .widget-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #c41e3a;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #c41e3a;
+        }
+        
+        .trending-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .trending-item:last-child {
+            border-bottom: none;
+        }
+        
+        .trending-number {
+            background: #c41e3a;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .trending-text {
+            font-size: 14px;
+            line-height: 1.3;
+        }
+        
+        .weather {
+            text-align: center;
+            background: linear-gradient(135deg, #87CEEB 0%, #1e90ff 100%);
+            color: white;
+            border-radius: 8px;
+        }
+        
+        .weather-city {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .weather-temp {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .weather-desc {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            color: #999;
+            font-size: 12px;
+        }
+        
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .mobile-menu-overlay.active {
+            opacity: 1;
+        }
+        
+        .mobile-nav-links {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, #c41e3a 0%, #a01729 100%);
+            backdrop-filter: blur(20px);
+            padding: 80px 30px 30px;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.3);
+        }
+        
+        .mobile-nav-links.active {
+            right: 0;
+        }
+        
+        .mobile-nav-links a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .mobile-nav-links a:hover {
+            padding-left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .mobile-nav-links a::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .mobile-nav-links a:hover::before {
+            left: 100%;
+        }
+        
+        .mobile-nav-search {
+            margin: 20px 0;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            color: white;
+            outline: none;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .mobile-nav-search::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Mobile First Responsive Design */
+        @media (max-width: 480px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+                padding: 0 10px;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .date-time {
+                font-size: 12px;
+            }
+            
+            .nav {
+                padding: 8px 0;
+            }
+            
+            .nav-container {
+                padding: 0 10px;
+            }
+            
+            .nav-links {
+                display: none !important;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            .mobile-search {
+                display: block;
+                width: 100%;
+                max-width: 200px;
+                margin: 10px 0;
+            }
+            
+            .breaking-container {
+                padding: 0 10px;
+            }
+            
+            .breaking-label {
+                font-size: 10px;
+                padding: 3px 8px;
+                margin-right: 10px;
+            }
+            
+            .breaking-text {
+                font-size: 12px;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+                gap: 20px;
+            }
+            
+            .featured-content {
+                padding: 20px;
+            }
+            
+            .featured-title {
+                font-size: 20px;
+                line-height: 1.2;
+            }
+            
+            .featured-summary {
+                font-size: 14px;
+            }
+            
+            .news-grid {
+                padding: 20px;
+            }
+            
+            .news-item {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            .news-image {
+                width: 100%;
+                height: 120px;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .news-content h3 {
+                font-size: 14px;
+                margin-bottom: 6px;
+            }
+            
+            .news-meta {
+                font-size: 11px;
+            }
+            
+            .news-summary {
+                font-size: 12px;
+            }
+            
+            .widget {
+                padding: 15px;
+            }
+            
+            .widget-title {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+            
+            .trending-item {
+                padding: 8px 0;
+                margin-bottom: 10px;
+            }
+            
+            .trending-number {
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+            }
+            
+            .trending-text {
+                font-size: 12px;
+            }
+            
+            .popular-meta {
+                font-size: 10px;
+            }
+            
+            .weather-city {
+                font-size: 16px;
+            }
+            
+            .weather-temp {
+                font-size: 28px;
+            }
+            
+            .weather-desc {
+                font-size: 12px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .footer-links a {
+                font-size: 12px;
+            }
+            
+            .copyright {
+                font-size: 10px;
+            }
+        }
+        
+        /* Tablet Styles */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .header-top {
+                padding: 0 15px;
+            }
+            
+            .logo {
+                font-size: 26px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 12px;
+                justify-content: center;
+            }
+            
+            .nav-links a {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+                padding: 15px;
+                gap: 25px;
+            }
+            
+            .featured-content {
+                padding: 25px;
+            }
+            
+            .featured-title {
+                font-size: 24px;
+            }
+            
+            .featured-summary {
+                font-size: 15px;
+            }
+            
+            .news-grid {
+                padding: 25px;
+            }
+            
+            .news-item {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            
+            .news-image {
+                width: 140px;
+                height: 90px;
+                margin-right: 15px;
+            }
+            
+            .news-content h3 {
+                font-size: 15px;
+            }
+            
+            .widget {
+                padding: 20px;
+            }
+            
+            .widget-title {
+                font-size: 17px;
+            }
+            
+            .trending-number {
+                width: 22px;
+                height: 22px;
+                font-size: 11px;
+            }
+            
+            .trending-text {
+                font-size: 13px;
+            }
+            
+            .footer-content {
+                padding: 0 15px;
+            }
+        }
+        
+        /* Large Tablet/Small Desktop */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                grid-template-columns: 2fr 1fr;
+                gap: 30px;
+                padding: 20px;
+            }
+            
+            .featured-title {
+                font-size: 26px;
+            }
+            
+            .news-image {
+                width: 110px;
+                height: 75px;
+            }
+            
+            .news-content h3 {
+                font-size: 15px;
+            }
+        }
+        
+        /* Extra Large Screens */
+        @media (min-width: 1200px) {
+            .header-content,
+            .breaking-container,
+            .container,
+            .footer-content {
+                max-width: 1200px;
+            }
+            
+            .featured-title {
+                font-size: 32px;
+            }
+            
+            .news-content h3 {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <a href="#" class="logo">HABER7</a>
+            <div class="date-time" id="datetime"></div>
+        </div>
+        <nav class="nav">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="#anasayfa">Ana Sayfa</a></li>
+                    <li><a href="#gundem">Gündem</a></li>
+                    <li><a href="#politika">Politika</a></li>
+                    <li><a href="#ekonomi">Ekonomi</a></li>
+                    <li><a href="#spor">Spor</a></li>
+                    <li><a href="#teknoloji">Teknoloji</a></li>
+                    <li><a href="#saglik">Sağlık</a></li>
+                    <li><a href="#dunya">Dünya</a></li>
+                </ul>
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                    <div class="hamburger-line"></div>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
+        
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav-links" id="mobileNavLinks">
+            <input type="text" class="mobile-nav-search" placeholder="Haber ara...">
+            <a href="#anasayfa">Ana Sayfa</a>
+            <a href="#gundem">Gündem</a>
+            <a href="#politika">Politika</a>
+            <a href="#ekonomi">Ekonomi</a>
+            <a href="#spor">Spor</a>
+            <a href="#teknoloji">Teknoloji</a>
+            <a href="#saglik">Sağlık</a>
+            <a href="#dunya">Dünya</a>
+        </nav>
+    </header>
+    
+    <div class="breaking-news">
+        <div class="breaking-container">
+            <div class="breaking-label">SON DAKİKA</div>
+            <div class="breaking-text">Türkiye ekonomisinde yeni gelişmeler • Teknoloji sektöründe büyük yatırım • Eğitim sisteminde önemli değişiklikler planlanıyor</div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <main class="main-content">
+            <article class="featured-news">
+                <div class="featured-content">
+                    <h1 class="featured-title">Teknoloji Sektöründe Yeni Dönem Başlıyor</h1>
+                    <p class="featured-summary">Türkiye'nin dijital dönüşüm hedefleri doğrultusunda teknoloji sektöründe önemli adımlar atılıyor. Yerli yazılım firmaları için yeni destek paketleri açıklandı.</p>
+                </div>
+            </article>
+            
+            <div class="news-grid">
+                <article class="news-item">
+                    <div class="news-image"></div>
+                    <div class="news-content">
+                        <div class="news-meta">Ekonomi • 2 saat önce</div>
+                        <h3>Merkez Bankası'ndan Faiz Kararı Açıklaması</h3>
+                        <p class="news-summary">Türkiye Cumhuriyet Merkez Bankası, para politikası kurulu toplantısının ardından önemli açıklamalarda bulundu.</p>
+                    </div>
+                </article>
+                
+                <article class="news-item">
+                    <div class="news-image"></div>
+                    <div class="news-content">
+                        <div class="news-meta">Spor • 3 saat önce</div>
+                        <h3>Türk Futbolunda Büyük Transfer Hamlesi</h3>
+                        <p class="news-summary">Süper Lig takımları yeni sezon hazırlıklarını sürdürürken transfer çalışmaları da hız kazandı.</p>
+                    </div>
+                </article>
+                
+                <article class="news-item">
+                    <div class="news-image"></div>
+                    <div class="news-content">
+                        <div class="news-meta">Sağlık • 4 saat önce</div>
+                        <h3>Sağlık Bakanlığı'ndan Önemli Duyuru</h3>
+                        <p class="news-summary">Vatandaşların sağlık hizmetlerine erişimini kolaylaştıracak yeni dijital platform hizmete girdi.</p>
+                    </div>
+                </article>
+                
+                <article class="news-item">
+                    <div class="news-image"></div>
+                    <div class="news-content">
+                        <div class="news-meta">Teknoloji • 5 saat önce</div>
+                        <h3>Yapay Zeka Alanında Yerli Başarı</h3>
+                        <p class="news-summary">Türk mühendislerin geliştirdiği yapay zeka projesi uluslararası arenada büyük ilgi gördü.</p>
+                    </div>
+                </article>
+                
+                <article class="news-item">
+                    <div class="news-image"></div>
+                    <div class="news-content">
+                        <div class="news-meta">Eğitim • 6 saat önce</div>
+                        <h3>Milli Eğitim'den Dijital Dönüşüm Adımı</h3>
+                        <p class="news-summary">Okullarda teknoloji entegrasyonu için yeni projeler hayata geçiriliyor.</p>
+                    </div>
+                </article>
+            </div>
+        </main>
+        
+        <aside class="sidebar">
+            <div class="widget">
+                <h2 class="widget-title">En Çok Okunanlar</h2>
+                <div class="trending-item">
+                    <div class="trending-number">1</div>
+                    <div class="trending-text">Ekonomideki son gelişmeler piyasaları nasıl etkileyecek?</div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-number">2</div>
+                    <div class="trending-text">Teknoloji devlerinin Türkiye yatırımları artıyor</div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-number">3</div>
+                    <div class="trending-text">Yeni eğitim sistemi ile neler değişecek?</div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-number">4</div>
+                    <div class="trending-text">Sağlık sektoründe dijital dönüşüm hızlanıyor</div>
+                </div>
+                <div class="trending-item">
+                    <div class="trending-number">5</div>
+                    <div class="trending-text">Spor yatırımlarında yeni dönem başlıyor</div>
+                </div>
+            </div>
+            
+            <div class="widget weather">
+                <div class="widget-title" style="color: white; border-bottom-color: white;">Hava Durumu</div>
+                <div class="weather-city">İstanbul</div>
+                <div class="weather-temp">22°</div>
+                <div class="weather-desc">Parçalı Bulutlu</div>
+            </div>
+            
+            <div class="widget">
+                <h2 class="widget-title">Kategoriler</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px;">
+                    <a href="#" style="color: #666; text-decoration: none;">📰 Gündem</a>
+                    <a href="#" style="color: #666; text-decoration: none;">🏛️ Politika</a>
+                    <a href="#" style="color: #666; text-decoration: none;">💰 Ekonomi</a>
+                    <a href="#" style="color: #666; text-decoration: none;">⚽ Spor</a>
+                    <a href="#" style="color: #666; text-decoration: none;">💻 Teknoloji</a>
+                    <a href="#" style="color: #666; text-decoration: none;">🏥 Sağlık</a>
+                    <a href="#" style="color: #666; text-decoration: none;">🌍 Dünya</a>
+                    <a href="#" style="color: #666; text-decoration: none;">🎭 Kültür</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Hakkımızda</a>
+                <a href="#">İletişim</a>
+                <a href="#">Gizlilik Politikası</a>
+                <a href="#">Kullanım Şartları</a>
+                <a href="#">Rss</a>
+                <a href="#">Arşiv</a>
+            </div>
+            <p class="copyright">© 2024 Haber7. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+    
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'Europe/Istanbul'
+            };
+            document.getElementById('datetime').textContent = now.toLocaleDateString('tr-TR', options);
+        }
+        
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+        
+        // News Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+            const mobileNavLinks = document.getElementById('mobileNavLinks');
+            
+            // Check if elements exist
+            if (!mobileMenuToggle || !mobileMenuOverlay || !mobileNavLinks) {
+                console.log('News mobile menu elements not found');
+                return;
+            }
+            
+            function toggleMobileMenu() {
+                mobileMenuToggle.classList.toggle('active');
+                mobileMenuOverlay.classList.toggle('active');
+                mobileNavLinks.classList.toggle('active');
+                
+                if (mobileMenuOverlay.classList.contains('active')) {
+                    mobileMenuOverlay.style.display = 'block';
+                    mobileNavLinks.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    setTimeout(() => {
+                        mobileMenuOverlay.style.display = 'none';
+                        mobileNavLinks.style.display = 'none';
+                    }, 300);
+                    document.body.style.overflow = 'auto';
+                }
+            }
+            
+            mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+            
+            mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+            
+            // Close mobile menu when clicking on a link
+            mobileNavLinks.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    toggleMobileMenu();
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 480) {
+                    mobileMenuToggle.classList.remove('active');
+                    mobileMenuOverlay.classList.remove('active');
+                    mobileNavLinks.classList.remove('active');
+                    mobileMenuOverlay.style.display = 'none';
+                    mobileNavLinks.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Secure Panel</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #64748b;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --dark-color: #1e293b;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--light-bg);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--white);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-header p {
+            font-size: 12px;
+            color: var(--secondary-color);
+            margin-top: 4px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 16px;
+        }
+
+        .nav-group {
+            margin-bottom: 24px;
+        }
+
+        .nav-group-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            padding: 0 12px;
+        }
+
+        .nav-item {
+            margin-bottom: 4px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: var(--secondary-color);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .nav-link:hover {
+            background: #f1f5f9;
+            color: var(--primary-color);
+        }
+
+        .nav-link.active {
+            background: #eff6ff;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .nav-link .icon {
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-link .badge {
+            margin-left: auto;
+            background: var(--danger-color);
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 18px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 32px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-left h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            background: #f8fafc;
+            border-radius: 8px;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .logout-btn {
+            padding: 8px 16px;
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        .content {
+            padding: 32px;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-color);
+        }
+
+        .stat-card.success::before { background: var(--success-color); }
+        .stat-card.warning::before { background: var(--warning-color); }
+        .stat-card.danger::before { background: var(--danger-color); }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .stat-title {
+            font-size: 14px;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: white;
+            background: var(--primary-color);
+        }
+
+        .stat-card.success .stat-icon { background: var(--success-color); }
+        .stat-card.warning .stat-icon { background: var(--warning-color); }
+        .stat-card.danger .stat-icon { background: var(--danger-color); }
+
+        .stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 8px;
+        }
+
+        .stat-change {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .stat-change.positive {
+            color: var(--success-color);
+        }
+
+        .stat-change.negative {
+            color: var(--danger-color);
+        }
+
+        /* Security Alerts */
+        .security-alerts {
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 32px;
+            overflow: hidden;
+        }
+
+        .security-alerts-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            background: #fef2f2;
+        }
+
+        .security-alerts-header h3 {
+            color: var(--danger-color);
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .alert-item {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .alert-item:last-child {
+            border-bottom: none;
+        }
+
+        .alert-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fef2f2;
+            color: var(--danger-color);
+            flex-shrink: 0;
+        }
+
+        .alert-content {
+            flex: 1;
+        }
+
+        .alert-title {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 4px;
+        }
+
+        .alert-description {
+            color: var(--secondary-color);
+            font-size: 14px;
+        }
+
+        .alert-time {
+            color: var(--secondary-color);
+            font-size: 12px;
+            flex-shrink: 0;
+        }
+
+        /* Data Tables */
+        .table-container {
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+
+        .table-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .table-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+
+        .btn-secondary {
+            background: #f8fafc;
+            color: var(--secondary-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: #f1f5f9;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px 24px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-blocked {
+            background: #fecaca;
+            color: #991b1b;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+                margin-right: 12px;
+                border-radius: 8px;
+                transition: background 0.2s ease;
+            }
+            
+            .mobile-menu-btn:hover {
+                background: rgba(0, 0, 0, 0.05);
+            }
+            
+            .mobile-menu-btn span {
+                width: 20px;
+                height: 2px;
+                background: var(--text-color);
+                margin: 2px 0;
+                transition: all 0.3s ease;
+                border-radius: 1px;
+            }
+            
+            .mobile-menu-btn.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .mobile-menu-btn.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-btn.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            .sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            
+            .sidebar-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .content {
+                padding: 16px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .header {
+                padding: 16px;
+            }
+        }
+
+        /* Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Success/Error Messages */
+        .message {
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .message-success {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+        }
+
+        .message-error {
+            background: #fecaca;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+        }
+
+        .message-warning {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #fed7aa;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            box-sizing: border-box;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08);
+            background: white;
+            transform: translateY(-1px);
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 14px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08);
+            background: white;
+            transform: translateY(-1px);
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 1rem;
+            align-items: end;
+        }
+
+        .form-grid-4 {
+            grid-template-columns: 1fr 2fr 1fr auto;
+        }
+
+        .form-grid-2 {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 12px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        /* Enhanced Modern Styling */
+        .card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            border-color: #cbd5e1;
+        }
+
+        .card h3 {
+            margin: 0 0 16px 0;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        /* Enhanced Stats Cards */
+        .stat-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: var(--dark-color);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: transform 0.2s ease;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-card.primary {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left: 4px solid #2196f3;
+        }
+
+        .stat-card.success {
+            background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+            border-left: 4px solid #4caf50;
+        }
+
+        .stat-card.warning {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            border-left: 4px solid #ff9800;
+        }
+
+        .stat-card.danger {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border-left: 4px solid #f44336;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Enhanced Table Styling */
+        .data-table {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-weight: 600;
+            color: #475569;
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table td {
+            padding: 16px 24px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .data-table tr:hover {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Utility classes */
+        .truncate {
+            max-width: 300px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .compact-table {
+            font-size: 12px;
+        }
+
+        .compact-table td {
+            padding: 8px 16px;
+        }
+
+        /* Enhanced Navigation */
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .nav-link:hover::before {
+            left: 100%;
+        }
+
+        /* Enhanced Theme Cards */
+        .theme-card {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .theme-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .theme-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            border-color: var(--primary-color);
+        }
+
+        .theme-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* Enhanced Status Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-active::before {
+            background: #10b981;
+        }
+
+        .status-inactive::before {
+            background: #f59e0b;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Enhanced Loading States */
+        .loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-color);
+            border-top: 2px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Enhanced Responsive Design */
+        
+        /* Large tablets and small desktops */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 220px;
+            }
+            
+            .main-content {
+                margin-left: 220px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+
+        /* Tablets */
+        @media (max-width: 768px) {
+            .form-grid-4 {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .form-grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 16px;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .card {
+                padding: 20px;
+                margin-bottom: 16px;
+            }
+
+            .theme-card {
+                padding: 16px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 12px;
+                align-items: flex-start;
+            }
+            
+            .header-right {
+                align-self: stretch;
+                justify-content: space-between;
+            }
+            
+            .user-info {
+                flex-direction: row;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .data-table {
+                font-size: 13px;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 8px 12px;
+            }
+            
+            .btn-group {
+                flex-direction: column;
+                gap: 4px;
+            }
+            
+            .btn-small {
+                padding: 8px 12px;
+                font-size: 11px;
+            }
+            
+            .theme-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+
+        /* Mobile phones */
+        @media (max-width: 480px) {
+            .header {
+                padding: 12px 16px;
+            }
+            
+            .header h1 {
+                font-size: 20px;
+            }
+            
+            .content {
+                padding: 12px;
+            }
+            
+            .card {
+                padding: 16px;
+                border-radius: 12px;
+            }
+            
+            .stat-card {
+                padding: 12px;
+                text-align: left;
+            }
+            
+            .stat-number {
+                font-size: 1.8rem;
+                margin: 8px 0;
+            }
+            
+            .stat-label {
+                font-size: 13px;
+            }
+            
+            .theme-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .theme-card {
+                padding: 12px;
+            }
+            
+            .data-table {
+                font-size: 12px;
+                display: block;
+                overflow-x: auto;
+                white-space: nowrap;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 6px 8px;
+                min-width: 80px;
+            }
+            
+            .btn {
+                padding: 10px 16px;
+                font-size: 13px;
+            }
+            
+            .btn-small {
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+            
+            .form-input,
+            .form-select {
+                padding: 12px 14px;
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            .sidebar {
+                width: 100%;
+                z-index: 9999;
+            }
+            
+            .sidebar .nav-item {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .user-avatar {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+            
+            .logout-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            
+            /* Mobile-specific status badges */
+            .status-badge {
+                padding: 2px 6px;
+                font-size: 10px;
+                border-radius: 8px;
+            }
+            
+            /* Compact table for mobile */
+            .mobile-table-compact {
+                display: block;
+            }
+            
+            .mobile-table-compact thead {
+                display: none;
+            }
+            
+            .mobile-table-compact tr {
+                display: block;
+                margin-bottom: 12px;
+                background: white;
+                border-radius: 8px;
+                padding: 12px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            
+            .mobile-table-compact td {
+                display: block;
+                border: none;
+                padding: 4px 0;
+                text-align: left !important;
+            }
+            
+            .mobile-table-compact td:before {
+                content: attr(data-label) ": ";
+                font-weight: 600;
+                color: var(--secondary-color);
+                display: inline-block;
+                min-width: 80px;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 360px) {
+            .header {
+                padding: 10px 12px;
+            }
+            
+            .content {
+                padding: 8px;
+            }
+            
+            .card {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+            
+            .stat-card {
+                padding: 10px;
+            }
+            
+            .stat-number {
+                font-size: 1.6rem;
+            }
+            
+            .form-input,
+            .form-select {
+                padding: 10px 12px;
+            }
+            
+            .btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+
+        /* Smooth Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Enhanced Message Styling */
+        .message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2>🛡️ SecurePanel</h2>
+            <p id="currentTime"></p>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="nav-group">
+                <div class="nav-group-title">Dashboard</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link active" data-section="overview">
+                        <span class="icon">📊</span>
+                        Overview
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-section="analytics">
+                        <span class="icon">📈</span>
+                        Analytics
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Security</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-section="security-logs">
+                        <span class="icon">🔒</span>
+                        Security Logs
+                        <span class="badge" id="securityAlerts">0</span>
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-section="blocked-ips">
+                        <span class="icon">🚫</span>
+                        Blocked IPs
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-section="user-sessions">
+                        <span class="icon">👥</span>
+                        User Sessions
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Management</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-section="visitor-logs">
+                        <span class="icon">📋</span>
+                        Visitor Logs
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-section="redirect-urls">
+                        <span class="icon">🔗</span>
+                        Redirect URLs
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-section="themes">
+                        <span class="icon">🎨</span>
+                        Themes
+                    </a>
+                </div>
+            </div>
+
+            <div class="nav-group">
+                <div class="nav-group-title">Settings</div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-section="account">
+                        <span class="icon">⚙️</span>
+                        Account Settings
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="#" class="nav-link" data-section="two-factor">
+                        <span class="icon">🔐</span>
+                        Two-Factor Auth
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <h1 id="sectionTitle">Dashboard Overview</h1>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div>
+                        <div style="font-weight: 600; font-size: 14px;" id="username">Admin</div>
+                        <div style="font-size: 12px; color: var(--secondary-color);" id="lastLogin">Last login: Today</div>
+                    </div>
+                </div>
+                <button class="logout-btn" onclick="logout()">
+                    🔐 Logout
+                </button>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- Overview Section -->
+            <div id="overview-section" class="content-section">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-title">Total Visitors</div>
+                                <div class="stat-value" id="totalVisitors">0</div>
+                                <div class="stat-change positive" id="visitorChange">+0%</div>
+                            </div>
+                            <div class="stat-icon">👥</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card success">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-title">Successful Redirects</div>
+                                <div class="stat-value" id="successfulRedirects">0</div>
+                                <div class="stat-change positive" id="redirectChange">+0%</div>
+                            </div>
+                            <div class="stat-icon">✅</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card warning">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-title">Bot Detections</div>
+                                <div class="stat-value" id="botDetections">0</div>
+                                <div class="stat-change" id="botChange">+0%</div>
+                            </div>
+                            <div class="stat-icon">🤖</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card danger">
+                        <div class="stat-header">
+                            <div>
+                                <div class="stat-title">Security Alerts</div>
+                                <div class="stat-value" id="securityAlertCount">0</div>
+                                <div class="stat-change negative" id="alertChange">+0%</div>
+                            </div>
+                            <div class="stat-icon">⚠️</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="security-alerts">
+                    <div class="security-alerts-header">
+                        <h3>🚨 Recent Security Alerts</h3>
+                    </div>
+                    <div id="securityAlertsList">
+                        <div class="alert-item">
+                            <div class="alert-icon">⚠️</div>
+                            <div class="alert-content">
+                                <div class="alert-title">No recent security alerts</div>
+                                <div class="alert-description">System is secure and monitoring is active</div>
+                            </div>
+                            <div class="alert-time">Now</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Recent Visitor Activity</h3>
+                        <div class="table-actions">
+                            <button class="btn btn-secondary" onclick="refreshLogs()">
+                                🔄 Refresh
+                            </button>
+                            <button class="btn btn-primary" onclick="exportData()">
+                                📊 Export
+                            </button>
+                        </div>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>IP Address</th>
+                                <th>Country</th>
+                                <th>Action</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentLogsTable">
+                            <tr>
+                                <td colspan="5" style="text-align: center; color: var(--secondary-color);">
+                                    Loading visitor data...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Other sections will be populated by JavaScript -->
+            <div id="analytics-section" class="content-section" style="display: none;">
+                <h2>Analytics Dashboard</h2>
+                <p>Detailed analytics and visitor statistics.</p>
+                <div class="card">
+                    <h3>📊 Advanced Analytics</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;">
+                        <div class="stat-card primary">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Daily Visitors</div>
+                        </div>
+                        <div class="stat-card success">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Weekly Visitors</div>
+                        </div>
+                        <div class="stat-card danger">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Monthly Visitors</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="security-logs-section" class="content-section" style="display: none;">
+                <h2>Security Logs</h2>
+                <p>Security monitoring and threat detection logs.</p>
+                <div class="card">
+                    <h3>Recent Security Events</h3>
+                    <div id="security-logs-list">
+                        <p>Loading security logs...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="blocked-ips-section" class="content-section" style="display: none;">
+                <h2>Blocked IP Addresses</h2>
+                <p>Manage blocked IP addresses and security restrictions.</p>
+                <div class="card">
+                    <h3>Currently Blocked IPs</h3>
+                    <div id="blocked-ips-list">
+                        <p>No blocked IPs currently.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="user-sessions-section" class="content-section" style="display: none;">
+                <h2>Active User Sessions</h2>
+                <p>Monitor active admin sessions and security.</p>
+                <div class="card">
+                    <h3>Current Sessions</h3>
+                    <div id="user-sessions-list">
+                        <p>Loading active sessions...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="visitor-logs-section" class="content-section" style="display: none;">
+                <h2>Detailed Visitor Logs</h2>
+                <p>Complete visitor activity logs with filtering options.</p>
+                <div class="card">
+                    <div class="btn-group" style="margin-bottom: 20px;">
+                        <button id="refresh-logs-btn" class="btn btn-primary btn-small">Refresh Logs</button>
+                        <button id="export-logs-btn" class="btn btn-success btn-small">Export CSV</button>
+                    </div>
+                    <div id="detailed-visitor-logs">
+                        <p>Loading detailed visitor logs...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="account-section" class="content-section" style="display: none;">
+                <h2>Account Settings</h2>
+                <p>Manage your admin account settings and preferences.</p>
+                
+                <div class="card" style="margin-bottom: 20px;">
+                    <h3>Change Password</h3>
+                    <form id="password-change-form">
+                        <div class="form-grid form-grid-2" style="max-width: 400px;">
+                            <div class="form-group">
+                                <label for="new-password" class="form-label">New Password:</label>
+                                <input type="password" id="new-password" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password" class="form-label">Confirm Password:</label>
+                                <input type="password" id="confirm-password" class="form-input" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Change Password</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>Account Information</h3>
+                    <div id="account-info">
+                        <p>Loading account information...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="two-factor-section" class="content-section" style="display: none;">
+                <h2>Two-Factor Authentication</h2>
+                <p>Enhance your account security with 2FA.</p>
+                <div class="card">
+                    <h3>2FA Status</h3>
+                    <div style="padding: 20px; text-align: center; background: #f8f9fa; border-radius: 8px;">
+                        <div style="font-size: 48px; margin-bottom: 10px;">🔐</div>
+                        <p><strong>Two-Factor Authentication is currently disabled</strong></p>
+                        <button class="btn btn-success" style="margin-top: 10px;">Enable 2FA</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="redirect-urls-section" class="content-section" style="display: none;">
+                <h2>Redirect URLs Management</h2>
+                <p>Manage your redirect URLs and themes here.</p>
+                
+                <!-- Add New URL Form -->
+                <div class="card" style="margin-bottom: 20px;">
+                    <h3>Add New Redirect URL</h3>
+                    <form id="add-url-form">
+                        <div class="form-grid form-grid-4">
+                            <div class="form-group">
+                                <label for="url-name" class="form-label">Name:</label>
+                                <input type="text" id="url-name" class="form-input" placeholder="e.g., Main Site" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="url-link" class="form-label">URL:</label>
+                                <input type="url" id="url-link" class="form-input" placeholder="https://example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="url-theme" class="form-label">Theme:</label>
+                                <select id="url-theme" class="form-select" required>
+                                    <option value="business">Business</option>
+                                    <option value="blog">Blog</option>
+                                    <option value="news">News</option>
+                                    <option value="cybersecurity">Cybersecurity</option>
+                                </select>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">Add URL</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Current URLs List -->
+                <div class="card">
+                    <h3>Current Redirect URLs</h3>
+                    <div id="urls-list">
+                        <p>Loading URLs...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="themes-section" class="content-section" style="display: none;">
+                <h2>Theme Management</h2>
+                <p>Preview and manage your cloaking themes here.</p>
+                
+                <div class="card">
+                    <h3>Available Themes</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                        
+                        <!-- Business Theme -->
+                        <div class="theme-card" style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; background: #f8f9fa;">
+                            <h4 style="margin-top: 0; color: #333;">Business Theme</h4>
+                            <div style="background: white; border: 1px solid #ccc; border-radius: 4px; padding: 10px; margin: 10px 0; min-height: 100px;">
+                                <div style="background: #007bff; color: white; padding: 5px 10px; border-radius: 3px; font-size: 12px; margin-bottom: 8px;">Corporate Header</div>
+                                <div style="font-size: 11px; color: #666;">Professional business layout with clean design and corporate colors.</div>
+                            </div>
+                            <button class="preview-theme-btn" data-theme="business" style="background: #007bff; color: white; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer; font-size: 12px;">Preview</button>
+                        </div>
+                        
+                        <!-- Blog Theme -->
+                        <div class="theme-card" style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; background: #f8f9fa;">
+                            <h4 style="margin-top: 0; color: #333;">Blog Theme</h4>
+                            <div style="background: white; border: 1px solid #ccc; border-radius: 4px; padding: 10px; margin: 10px 0; min-height: 100px;">
+                                <div style="background: #28a745; color: white; padding: 5px 10px; border-radius: 3px; font-size: 12px; margin-bottom: 8px;">Blog Title</div>
+                                <div style="font-size: 11px; color: #666;">Personal blog style with article layout and casual design.</div>
+                            </div>
+                            <button class="preview-theme-btn" data-theme="blog" style="background: #28a745; color: white; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer; font-size: 12px;">Preview</button>
+                        </div>
+                        
+                        <!-- News Theme -->
+                        <div class="theme-card" style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; background: #f8f9fa;">
+                            <h4 style="margin-top: 0; color: #333;">News Theme</h4>
+                            <div style="background: white; border: 1px solid #ccc; border-radius: 4px; padding: 10px; margin: 10px 0; min-height: 100px;">
+                                <div style="background: #dc3545; color: white; padding: 5px 10px; border-radius: 3px; font-size: 12px; margin-bottom: 8px;">Breaking News</div>
+                                <div style="font-size: 11px; color: #666;">News website layout with headlines and article structure.</div>
+                            </div>
+                            <button class="preview-theme-btn" data-theme="news" style="background: #dc3545; color: white; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer; font-size: 12px;">Preview</button>
+                        </div>
+                        
+                        <!-- Cybersecurity Theme -->
+                        <div class="theme-card" style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; background: #f8f9fa;">
+                            <h4 style="margin-top: 0; color: #333;">Cybersecurity Theme</h4>
+                            <div style="background: white; border: 1px solid #ccc; border-radius: 4px; padding: 10px; margin: 10px 0; min-height: 100px;">
+                                <div style="background: #6f42c1; color: white; padding: 5px 10px; border-radius: 3px; font-size: 12px; margin-bottom: 8px;">Security Portal</div>
+                                <div style="font-size: 11px; color: #666;">High-tech security theme with dark colors and tech elements.</div>
+                            </div>
+                            <button class="preview-theme-btn" data-theme="cybersecurity" style="background: #6f42c1; color: white; border: none; padding: 5px 15px; border-radius: 4px; cursor: pointer; font-size: 12px;">Preview</button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let currentSection = 'overview';
+        let refreshInterval;
+        let csrfToken = null;
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initDashboard();
+            initMobileMenu();
+            updateTime();
+            setInterval(updateTime, 1000);
+            loadDashboardData();
+            
+            // Auto-refresh data every 30 seconds
+            refreshInterval = setInterval(loadDashboardData, 30000);
+        });
+
+        // Initialize dashboard
+        function initDashboard() {
+            // Get CSRF token first
+            fetch('/admin/dashboard')
+                .then(response => response.text())
+                .then(html => {
+                    // Extract CSRF token from page meta or script
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    // For now, skip CSRF for admin APIs since we're authenticated
+                })
+                .catch(console.error);
+
+            // Set up navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.getAttribute('data-section');
+                    if (section) {
+                        switchSection(section);
+                    }
+                });
+            });
+
+            // Get user info
+            fetch('/api/user-info')
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            window.location.href = '/admin/login';
+                            return;
+                        }
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data && data.username) {
+                        document.getElementById('username').textContent = data.username;
+                        document.getElementById('userAvatar').textContent = data.username.charAt(0).toUpperCase();
+                    }
+                    if (data && data.lastLogin) {
+                        document.getElementById('lastLogin').textContent = `Last login: ${new Date(data.lastLogin).toLocaleDateString()}`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading user info:', error);
+                    showMessage('Error loading user information', 'error');
+                });
+        }
+
+        // Update current time
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleString('tr-TR', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            document.getElementById('currentTime').textContent = timeString;
+        }
+
+        // Switch sections
+        function switchSection(section) {
+            // Update navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+            document.querySelector(`[data-section="${section}"]`).classList.add('active');
+
+            // Update content
+            document.querySelectorAll('.content-section').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            const sectionEl = document.getElementById(`${section}-section`);
+            if (sectionEl) {
+                sectionEl.style.display = 'block';
+            }
+
+            // Update title
+            const titles = {
+                'overview': 'Dashboard Overview',
+                'security-logs': 'Security Logs',
+                'blocked-ips': 'Blocked IP Addresses',
+                'user-sessions': 'User Sessions',
+                'visitor-logs': 'Visitor Logs',
+                'redirect-urls': 'Redirect URLs',
+                'themes': 'Theme Management',
+                'account': 'Account Settings',
+                'two-factor': 'Two-Factor Authentication'
+            };
+            
+            document.getElementById('sectionTitle').textContent = titles[section] || 'Dashboard';
+            currentSection = section;
+        }
+
+        // Load dashboard data
+        function loadDashboardData() {
+            Promise.all([
+                fetch('/api/stats').then(r => {
+                    if (!r.ok) {
+                        if (r.status === 401) {
+                            window.location.href = '/admin/login';
+                            return {};
+                        }
+                        throw new Error(`HTTP ${r.status}`);
+                    }
+                    return r.json();
+                }),
+                fetch('/api/logs').then(r => {
+                    if (!r.ok) {
+                        if (r.status === 401) {
+                            window.location.href = '/admin/login';
+                            return [];
+                        }
+                        throw new Error(`HTTP ${r.status}`);
+                    }
+                    return r.json();
+                }),
+                fetch('/api/security-alerts').then(r => {
+                    if (!r.ok) {
+                        if (r.status === 401) {
+                            window.location.href = '/admin/login';
+                            return {alerts: []};
+                        }
+                        throw new Error(`HTTP ${r.status}`);
+                    }
+                    return r.json();
+                }).catch(() => ({alerts: []}))
+            ])
+            .then(([stats, logs, security]) => {
+                updateStats(stats);
+                updateRecentLogs(logs);
+                updateSecurityAlerts(security.alerts || []);
+            })
+            .catch(error => {
+                console.error('Error loading dashboard data:', error);
+                showMessage('Error loading dashboard data', 'error');
+            });
+        }
+
+        // Update statistics
+        function updateStats(stats) {
+            document.getElementById('totalVisitors').textContent = stats.total_visitors || 0;
+            document.getElementById('successfulRedirects').textContent = stats.redirected_count || 0;
+            document.getElementById('botDetections').textContent = stats.bot_count || 0;
+            document.getElementById('securityAlertCount').textContent = stats.security_alerts || 0;
+            document.getElementById('securityAlerts').textContent = stats.security_alerts || 0;
+        }
+
+        // Update recent logs
+        function updateRecentLogs(logs) {
+            const tbody = document.getElementById('recentLogsTable');
+            if (logs && logs.length > 0) {
+                tbody.innerHTML = logs.slice(0, 10).map(log => `
+                    <tr>
+                        <td>${new Date(log.timestamp).toLocaleString('tr-TR')}</td>
+                        <td><code>${log.ip}</code></td>
+                        <td>${log.country || 'Unknown'}</td>
+                        <td>${log.action}</td>
+                        <td><span class="status-badge status-${log.action === 'redirected' ? 'active' : 'pending'}">${log.action}</span></td>
+                    </tr>
+                `).join('');
+            } else {
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; color: var(--secondary-color);">No recent activity</td></tr>';
+            }
+        }
+
+        // Update security alerts
+        function updateSecurityAlerts(alerts) {
+            const container = document.getElementById('securityAlertsList');
+            if (alerts.length > 0) {
+                container.innerHTML = alerts.map(alert => `
+                    <div class="alert-item">
+                        <div class="alert-icon">⚠️</div>
+                        <div class="alert-content">
+                            <div class="alert-title">${alert.title}</div>
+                            <div class="alert-description">${alert.description}</div>
+                        </div>
+                        <div class="alert-time">${new Date(alert.timestamp).toLocaleString('tr-TR')}</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Utility functions
+        function refreshLogs() {
+            showMessage('Refreshing data...', 'info');
+            loadDashboardData();
+        }
+
+        function exportData() {
+            fetch('/api/export-logs')
+                .then(response => {
+                    if (!response.ok) {
+                        if (response.status === 401) {
+                            window.location.href = '/admin/login';
+                            return;
+                        }
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `cloaker-logs-${new Date().toISOString().split('T')[0]}.csv`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                    showMessage('Export started', 'success');
+                })
+                .catch(error => {
+                    console.error('Export error:', error);
+                    showMessage('Export failed', 'error');
+                });
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                fetch('/api/logout', { method: 'POST' })
+                    .then(response => {
+                        // Even if logout fails, redirect to login
+                        window.location.href = '/admin/login';
+                    })
+                    .catch(error => {
+                        console.error('Logout error:', error);
+                        // Still redirect to login on error
+                        window.location.href = '/admin/login';
+                    });
+            }
+        }
+
+        function showMessage(message, type = 'info') {
+            const messageEl = document.createElement('div');
+            messageEl.className = `message message-${type}`;
+            messageEl.textContent = message;
+            
+            document.querySelector('.content').insertBefore(messageEl, document.querySelector('.content').firstChild);
+            
+            setTimeout(() => {
+                messageEl.remove();
+            }, 5000);
+        }
+
+        // Handle connection errors
+        window.addEventListener('online', () => {
+            showMessage('Connection restored', 'success');
+            loadDashboardData();
+        });
+
+        window.addEventListener('offline', () => {
+            showMessage('Connection lost', 'warning');
+        });
+
+        // Redirect URLs Management Functions
+        let redirectUrlsInitialized = false;
+        function initRedirectUrlsSection() {
+            console.log('Initializing redirect URLs section...');
+            loadRedirectUrls();
+            
+            // Add form submission handler only once 
+            if (!redirectUrlsInitialized) {
+                const form = document.getElementById('add-url-form');
+                if (form) {
+                    form.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    console.log('Form submitted!');
+                
+                const name = document.getElementById('url-name').value;
+                const url = document.getElementById('url-link').value;
+                const theme = document.getElementById('url-theme').value;
+                
+                try {
+                    const response = await fetch('/api/redirect-urls', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ name, url, theme })
+                    });
+                    
+                    if (response.ok) {
+                        showMessage('URL added successfully', 'success');
+                        document.getElementById('add-url-form').reset();
+                        loadRedirectUrls();
+                    } else {
+                        showMessage('Failed to add URL', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error adding URL:', error);
+                    showMessage('Error adding URL', 'error');
+                }
+                });
+                redirectUrlsInitialized = true;
+                } else {
+                    console.error('Form not found!');
+                }
+            }
+        }
+        
+        async function loadRedirectUrls() {
+            console.log('Loading redirect URLs...');
+            try {
+                const response = await fetch('/api/redirect-urls');
+                console.log('Response status:', response.status);
+                
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        window.location.href = '/admin/login';
+                        return;
+                    }
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                
+                const urls = await response.json();
+                console.log('URLs loaded:', urls);
+                displayRedirectUrls(urls);
+            } catch (error) {
+                console.error('Error loading URLs:', error);
+                document.getElementById('urls-list').innerHTML = '<p>Error loading URLs: ' + error.message + '</p>';
+            }
+        }
+        
+        function displayRedirectUrls(urls) {
+            const urlsList = document.getElementById('urls-list');
+            
+            if (!urls.length) {
+                urlsList.innerHTML = '<p>No redirect URLs configured yet.</p>';
+                return;
+            }
+            
+            let html = '<table class="data-table">';
+            html += '<thead><tr>';
+            html += '<th>Name</th>';
+            html += '<th>URL</th>';
+            html += '<th>Theme</th>';
+            html += '<th style="text-align: center;">Status</th>';
+            html += '<th style="text-align: center;">Actions</th>';
+            html += '</tr></thead><tbody>';
+            
+            urls.forEach(url => {
+                html += `<tr>`;
+                html += `<td><strong>${url.name}</strong></td>`;
+                html += `<td><a href="${url.url}" target="_blank" style="color: var(--primary-color); text-decoration: none;">${url.url}</a></td>`;
+                html += `<td><span style="background: #f1f5f9; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 500; text-transform: capitalize;">${url.theme}</span></td>`;
+                html += `<td style="text-align: center;">`;
+                if (url.isActive) {
+                    html += '<span class="status-badge status-active">Active</span>';
+                } else {
+                    html += '<span class="status-badge status-inactive">Inactive</span>';
+                }
+                html += `</td>`;
+                html += `<td style="text-align: center;">`;
+                html += `<div class="btn-group">`;
+                if (!url.isActive) {
+                    html += `<button class="activate-btn btn btn-success btn-small" data-id="${url._id}">Activate</button>`;
+                }
+                html += `<button class="delete-btn btn btn-danger btn-small" data-id="${url._id}">Delete</button>`;
+                html += `</div>`;
+                html += `</td>`;
+                html += `</tr>`;
+            });
+            
+            html += '</tbody></table>';
+            urlsList.innerHTML = html;
+            
+            // Add event listeners for buttons
+            document.querySelectorAll('.activate-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    activateUrl(id);
+                });
+            });
+            
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    deleteUrl(id);
+                });
+            });
+        }
+        
+        async function activateUrl(id) {
+            try {
+                const response = await fetch(`/api/redirect-urls/${id}/activate`, {
+                    method: 'POST'
+                });
+                
+                if (response.ok) {
+                    showMessage('URL activated successfully', 'success');
+                    loadRedirectUrls();
+                } else {
+                    showMessage('Failed to activate URL', 'error');
+                }
+            } catch (error) {
+                console.error('Error activating URL:', error);
+                showMessage('Error activating URL', 'error');
+            }
+        }
+        
+        async function deleteUrl(id) {
+            if (confirm('Are you sure you want to delete this URL?')) {
+                try {
+                    const response = await fetch(`/api/redirect-urls/${id}`, {
+                        method: 'DELETE'
+                    });
+                    
+                    if (response.ok) {
+                        showMessage('URL deleted successfully', 'success');
+                        loadRedirectUrls();
+                    } else {
+                        showMessage('Failed to delete URL', 'error');
+                    }
+                } catch (error) {
+                    console.error('Error deleting URL:', error);
+                    showMessage('Error deleting URL', 'error');
+                }
+            }
+        }
+
+        // Theme preview functions
+        function initThemesSection() {
+            // Add event listeners for theme preview buttons
+            document.querySelectorAll('.preview-theme-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const theme = this.getAttribute('data-theme');
+                    previewTheme(theme);
+                });
+            });
+        }
+        
+        function previewTheme(theme) {
+            const themeUrl = `/themes/${theme}.html`;
+            window.open(themeUrl, '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
+            showMessage(`Opening ${theme} theme preview`, 'info');
+        }
+
+        // Additional section functions
+        function initAccountSection() {
+            // Load account info
+            loadAccountInfo();
+            
+            // Password change form
+            const passwordForm = document.getElementById('password-change-form');
+            if (passwordForm) {
+                passwordForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const newPassword = document.getElementById('new-password').value;
+                    const confirmPassword = document.getElementById('confirm-password').value;
+                    
+                    if (newPassword !== confirmPassword) {
+                        showMessage('Passwords do not match', 'error');
+                        return;
+                    }
+                    
+                    if (newPassword.length < 6) {
+                        showMessage('Password must be at least 6 characters', 'error');
+                        return;
+                    }
+                    
+                    try {
+                        const response = await fetch('/api/change-password', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ newPassword })
+                        });
+                        
+                        if (response.ok) {
+                            showMessage('Password changed successfully', 'success');
+                            passwordForm.reset();
+                        } else {
+                            showMessage('Failed to change password', 'error');
+                        }
+                    } catch (error) {
+                        console.error('Password change error:', error);
+                        showMessage('Error changing password', 'error');
+                    }
+                });
+            }
+        }
+        
+        async function loadAccountInfo() {
+            try {
+                const response = await fetch('/api/user-info');
+                if (response.ok) {
+                    const user = await response.json();
+                    document.getElementById('account-info').innerHTML = `
+                        <div style="display: grid; grid-template-columns: auto auto; gap: 10px; max-width: 400px;">
+                            <strong>Username:</strong> <span>${user.username}</span>
+                            <strong>Role:</strong> <span>${user.role}</span>
+                            <strong>Last Login:</strong> <span>${new Date(user.lastLogin).toLocaleString()}</span>
+                            <strong>Login Count:</strong> <span>${user.loginCount}</span>
+                            <strong>Member Since:</strong> <span>${new Date(user.createdAt).toLocaleDateString()}</span>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error('Error loading account info:', error);
+            }
+        }
+        
+        function loadVisitorLogs() {
+            fetch('/api/logs?limit=100')
+                .then(response => response.json())
+                .then(logs => {
+                    const logsContainer = document.getElementById('detailed-visitor-logs');
+                    if (logs.length === 0) {
+                        logsContainer.innerHTML = '<p>No visitor logs found.</p>';
+                        return;
+                    }
+                    
+                    let html = '<table class="data-table compact-table">';
+                    html += '<thead><tr>';
+                    html += '<th>Time</th>';
+                    html += '<th>IP</th>';
+                    html += '<th>Country</th>';
+                    html += '<th>Bot</th>';
+                    html += '<th>Mobile</th>';
+                    html += '<th>Action</th>';
+                    html += '<th>User Agent</th>';
+                    html += '</tr></thead><tbody>';
+                    
+                    logs.forEach(log => {
+                        html += '<tr>';
+                        html += `<td>${new Date(log.timestamp).toLocaleString()}</td>`;
+                        html += `<td>${log.ip}</td>`;
+                        html += `<td>${log.country || 'Unknown'}</td>`;
+                        html += `<td>${log.is_bot ? '✓' : '✗'}</td>`;
+                        html += `<td>${log.is_mobile ? '✓' : '✗'}</td>`;
+                        html += `<td>${log.action}</td>`;
+                        html += `<td class="truncate">${log.user_agent.substring(0, 50)}...</td>`;
+                        html += '</tr>';
+                    });
+                    
+                    html += '</tbody></table>';
+                    logsContainer.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error loading visitor logs:', error);
+                    document.getElementById('detailed-visitor-logs').innerHTML = '<p>Error loading logs.</p>';
+                });
+        }
+        
+        function exportVisitorLogs() {
+            window.open('/api/export-logs', '_blank');
+        }
+
+        // Update switchSection to initialize sections when needed
+        const originalSwitchSection = switchSection;
+        switchSection = function(section) {
+            originalSwitchSection(section);
+            if (section === 'redirect-urls') {
+                setTimeout(() => initRedirectUrlsSection(), 100);
+            } else if (section === 'themes') {
+                setTimeout(() => initThemesSection(), 100);
+            } else if (section === 'account') {
+                setTimeout(() => initAccountSection(), 100);
+            } else if (section === 'visitor-logs') {
+                setTimeout(() => {
+                    loadVisitorLogs();
+                    // Add event listeners for visitor logs buttons
+                    document.getElementById('refresh-logs-btn').addEventListener('click', loadVisitorLogs);
+                    document.getElementById('export-logs-btn').addEventListener('click', exportVisitorLogs);
+                }, 100);
+            }
+        };
+
+        // Mobile Menu Functions
+        function initMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('.main-content');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    toggleMobileMenu();
+                });
+            }
+            
+            // Close sidebar when clicking outside on mobile
+            mainContent.addEventListener('click', function(e) {
+                if (window.innerWidth <= 1024 && sidebar.classList.contains('open')) {
+                    if (!e.target.closest('.sidebar') && !e.target.closest('.mobile-menu-btn')) {
+                        closeMobileMenu();
+                    }
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 1024) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Add overlay for mobile
+            if (!document.querySelector('.sidebar-overlay')) {
+                const overlay = document.createElement('div');
+                overlay.className = 'sidebar-overlay';
+                overlay.addEventListener('click', closeMobileMenu);
+                document.body.appendChild(overlay);
+            }
+        }
+        
+        function toggleMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            mobileMenuBtn.classList.toggle('active');
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (sidebar.classList.contains('open')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+        
+        function closeMobileMenu() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            mobileMenuBtn.classList.remove('active');
+            sidebar.classList.remove('open');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    </script>
+</body>
+</html>

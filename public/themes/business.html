@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProBusiness - Kurumsal Çözümler | Profesyonel İş Danışmanlığı</title>
+    <meta name="description" content="Profesyonel iş çözümleri, kurumsal danışmanlık ve dijital dönüşüm hizmetleri. İşletmenizi geleceğe taşıyacak stratejik çözümler.">
+    <meta name="keywords" content="iş çözümleri, kurumsal danışmanlık, dijital dönüşüm, business consulting, strateji geliştirme, iş geliştirme, kurumsal eğitim, yönetim danışmanlığı">
+    <meta name="author" content="ProBusiness Consulting">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Turkish">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <link rel="canonical" href="https://probusiness.com.tr">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://probusiness.com.tr">
+    <meta property="og:title" content="ProBusiness - Kurumsal Çözümler | Profesyonel İş Danışmanlığı">
+    <meta property="og:description" content="Profesyonel iş çözümleri, kurumsal danışmanlık ve dijital dönüşüm hizmetleri. İşletmenizi geleceğe taşıyacak stratejik çözümler.">
+    <meta property="og:image" content="https://probusiness.com.tr/assets/og-business.jpg">
+    <meta property="og:site_name" content="ProBusiness">
+    <meta property="og:locale" content="tr_TR">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://probusiness.com.tr">
+    <meta property="twitter:title" content="ProBusiness - Kurumsal Çözümler">
+    <meta property="twitter:description" content="Profesyonel iş çözümleri, kurumsal danışmanlık ve dijital dönüşüm hizmetleri.">
+    <meta property="twitter:image" content="https://probusiness.com.tr/assets/twitter-business.jpg">
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#1f2937">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/site.webmanifest">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            color: #1f2937;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+            position: relative;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #1f2937;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo::before {
+            content: '🏢';
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-links a {
+            color: #4b5563;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-header {
+            background: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-header:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 40%, rgba(37, 99, 235, 0.05) 50%, transparent 60%);
+            transform: skewX(-15deg);
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 56px;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 24px;
+            line-height: 1.1;
+        }
+        
+        .hero-text .highlight {
+            color: #2563eb;
+        }
+        
+        .hero-text p {
+            font-size: 20px;
+            color: #6b7280;
+            margin-bottom: 32px;
+            line-height: 1.7;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #4b5563;
+            padding: 16px 32px;
+            border: 2px solid #d1d5db;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+            background: #f8fafc;
+        }
+        
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        
+        .stats-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border: 1px solid #f3f4f6;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            color: #2563eb;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .float-element {
+            position: absolute;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 20px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .float-element:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .float-element:nth-child(2) {
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .float-element:nth-child(3) {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .services {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .services-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-header h2 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 20px;
+        }
+        
+        .section-header p {
+            font-size: 18px;
+            color: #6b7280;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #f3f4f6;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #3b82f6);
+            transition: left 0.5s ease;
+        }
+        
+        .service-card:hover::before {
+            left: 0;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            font-size: 32px;
+        }
+        
+        .service-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 16px;
+        }
+        
+        .service-card p {
+            color: #6b7280;
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+        
+        .service-features li {
+            color: #4b5563;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 12px;
+        }
+        
+        .learn-more {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .learn-more:hover {
+            gap: 8px;
+        }
+        
+        .learn-more::after {
+            content: '→';
+            margin-left: 4px;
+            transition: margin-left 0.3s ease;
+        }
+        
+        .testimonials {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+        
+        .testimonials-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid #f3f4f6;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 80px;
+            color: #e5e7eb;
+            font-family: serif;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            font-size: 16px;
+            color: #4b5563;
+            line-height: 1.7;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 4px;
+        }
+        
+        .author-info p {
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .cta-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+        }
+        
+        .cta-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-white {
+            background: white;
+            color: #2563eb;
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+        }
+        
+        .footer {
+            background: #1f2937;
+            color: white;
+            padding: 80px 0 40px;
+        }
+        
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+        }
+        
+        .footer-brand h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .footer-brand p {
+            color: #d1d5db;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: #374151;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+        }
+        
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section a {
+            color: #d1d5db;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: #2563eb;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            margin-top: 60px;
+            padding-top: 30px;
+            text-align: center;
+            color: #9ca3af;
+        }
+        
+        /* Mobile First Responsive Design */
+        @media (max-width: 480px) {
+            .header-content {
+                height: 70px;
+                padding: 0 15px;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: row;
+            }
+            
+            .logo {
+                font-size: 22px;
+            }
+            
+            .business-mobile-menu-toggle {
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            .nav-links {
+                display: none !important;
+            }
+            
+            .cta-header {
+                display: none !important;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+                padding: 0 10px;
+            }
+            
+            .hero-text h1 {
+                font-size: 32px;
+                margin-bottom: 18px;
+                line-height: 1.1;
+            }
+            
+            .hero-text p {
+                font-size: 16px;
+                margin-bottom: 25px;
+                padding: 0 10px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                max-width: 250px;
+                padding: 14px 24px;
+                font-size: 15px;
+                text-align: center;
+            }
+            
+            .stats-card {
+                padding: 25px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            
+            .stat-number {
+                font-size: 28px;
+            }
+            
+            .stat-label {
+                font-size: 12px;
+            }
+            
+            .services {
+                padding: 60px 0;
+            }
+            
+            .services-content {
+                padding: 0 10px;
+            }
+            
+            .section-header {
+                margin-bottom: 50px;
+            }
+            
+            .section-header h2 {
+                font-size: 28px;
+                margin-bottom: 15px;
+            }
+            
+            .section-header p {
+                font-size: 16px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .service-card {
+                padding: 25px;
+            }
+            
+            .service-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+            
+            .service-card h3 {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+            
+            .service-card p {
+                font-size: 14px;
+                margin-bottom: 18px;
+            }
+            
+            .service-features {
+                margin-bottom: 18px;
+            }
+            
+            .service-features li {
+                font-size: 14px;
+                margin-bottom: 6px;
+            }
+            
+            .testimonials {
+                padding: 60px 0;
+            }
+            
+            .testimonials-content {
+                padding: 0 10px;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                margin-top: 40px;
+            }
+            
+            .testimonial-card {
+                padding: 25px;
+            }
+            
+            .testimonial-text {
+                font-size: 14px;
+                margin-bottom: 18px;
+            }
+            
+            .author-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .author-info h4 {
+                font-size: 15px;
+            }
+            
+            .author-info p {
+                font-size: 13px;
+            }
+            
+            .cta-section {
+                padding: 60px 0;
+            }
+            
+            .cta-content {
+                padding: 0 10px;
+            }
+            
+            .cta-section h2 {
+                font-size: 28px;
+                margin-bottom: 15px;
+            }
+            
+            .cta-section p {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .btn-white, .btn-secondary {
+                width: 100%;
+                max-width: 250px;
+            }
+            
+            .footer {
+                padding: 50px 0 30px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 0 10px;
+            }
+            
+            .footer-brand {
+                text-align: center;
+            }
+            
+            .footer-brand h3 {
+                font-size: 20px;
+            }
+            
+            .footer-brand p {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+            
+            .social-links {
+                justify-content: center;
+            }
+            
+            .footer-section {
+                text-align: center;
+            }
+            
+            .footer-section h4 {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+            
+            .footer-section a {
+                font-size: 14px;
+                margin-bottom: 8px;
+            }
+            
+            .footer-bottom {
+                font-size: 12px;
+                padding: 20px 10px;
+            }
+        }
+        
+        /* Tablet Styles */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .header-content {
+                height: 70px;
+                padding: 0 20px;
+                justify-content: flex-start;
+                align-items: center;
+                flex-direction: row;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            .business-mobile-menu-toggle {
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            .nav-links {
+                display: none !important;
+            }
+            
+            .cta-header {
+                display: none !important;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 42px;
+            }
+            
+            .hero-text p {
+                font-size: 18px;
+            }
+            
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 35px;
+                padding: 0 15px;
+            }
+        }
+        
+        /* Large Tablet/Small Desktop */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .header-content {
+                padding: 0 30px;
+            }
+            
+            .nav-links {
+                gap: 25px;
+            }
+            
+            .nav-links a {
+                font-size: 15px;
+            }
+            
+            .cta-header {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+            
+            .hero-content {
+                gap: 50px;
+            }
+            
+            .hero-text h1 {
+                font-size: 48px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* Extra Large Screens */
+        /* Medium Desktop */
+        @media (min-width: 1025px) and (max-width: 1199px) {
+            .nav-links {
+                gap: 30px;
+            }
+            
+            .nav-links a {
+                font-size: 15px;
+            }
+            
+            .cta-header {
+                padding: 10px 20px;
+                font-size: 15px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .header-content {
+                padding: 0 40px;
+            }
+            
+            .nav-links {
+                gap: 40px;
+            }
+            
+            .hero-content,
+            .services-content,
+            .testimonials-content,
+            .cta-content,
+            .footer-content {
+                max-width: 1600px;
+                margin: 0 auto;
+            }
+            
+            .hero-text h1 {
+                font-size: 64px;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Business Mobile Menu Toggle */
+        .business-mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+            z-index: 1001;
+            position: relative;
+        }
+        
+        .business-hamburger-line {
+            width: 25px;
+            height: 3px;
+            background: #1f2937;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+        }
+        
+        .business-mobile-menu-toggle.active .business-hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+            background: #2563eb;
+        }
+        
+        .business-mobile-menu-toggle.active .business-hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .business-mobile-menu-toggle.active .business-hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+            background: #2563eb;
+        }
+        
+        /* Business Mobile Menu Overlay */
+        .business-mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .business-mobile-menu-overlay.active {
+            opacity: 1;
+        }
+        
+        .business-mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 320px;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-left: 2px solid rgba(37, 99, 235, 0.2);
+            padding: 80px 30px 30px;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .business-mobile-nav.active {
+            right: 0;
+        }
+        
+        .business-mobile-nav a {
+            display: block;
+            color: #1f2937;
+            text-decoration: none;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .business-mobile-nav a:hover {
+            color: #2563eb;
+            padding-left: 20px;
+            background: rgba(37, 99, 235, 0.05);
+        }
+        
+        .business-mobile-nav a::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .business-mobile-nav a:hover::before {
+            left: 100%;
+        }
+        
+        .business-mobile-cta {
+            margin: 30px 0 20px;
+            padding: 15px 20px;
+            background: #2563eb;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .business-mobile-cta:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+        
+        .business-mobile-contact {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(229, 231, 235, 0.8);
+        }
+        
+        .business-mobile-contact h4 {
+            color: #1f2937;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .business-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #4b5563;
+        }
+        
+        .business-contact-item span {
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .business-mobile-menu-toggle {
+                display: flex;
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            .nav-links {
+                display: none !important;
+            }
+            
+            .cta-header {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .business-mobile-menu-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">ProBusiness</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Ana Sayfa</a></li>
+                    <li><a href="#services">Hizmetler</a></li>
+                    <li><a href="#solutions">Çözümler</a></li>
+                    <li><a href="#about">Hakkımızda</a></li>
+                    <li><a href="#contact">İletişim</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="cta-header">Ücretsiz Konsültasyon</a>
+            <button class="business-mobile-menu-toggle" id="businessMobileMenuToggle">
+                <div class="business-hamburger-line"></div>
+                <div class="business-hamburger-line"></div>
+                <div class="business-hamburger-line"></div>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="business-mobile-menu-overlay" id="businessMobileMenuOverlay"></div>
+    
+    <!-- Mobile Navigation -->
+    <nav class="business-mobile-nav" id="businessMobileNav">
+        <a href="#home">🏠 Ana Sayfa</a>
+        <a href="#services">💼 Hizmetler</a>
+        <a href="#solutions">⚡ Çözümler</a>
+        <a href="#about">ℹ️ Hakkımızda</a>
+        <a href="#contact">📞 İletişim</a>
+        
+        <a href="#contact" class="business-mobile-cta">Ücretsiz Konsültasyon</a>
+        
+        <div class="business-mobile-contact">
+            <h4>İletişim Bilgileri</h4>
+            <div class="business-contact-item">
+                <span>📞</span>
+                <span>+90 212 123 45 67</span>
+            </div>
+            <div class="business-contact-item">
+                <span>📧</span>
+                <span>info@probusiness.com</span>
+            </div>
+            <div class="business-contact-item">
+                <span>🕐</span>
+                <span>7/24 Destek</span>
+            </div>
+        </div>
+    </nav>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>İşinizi <span class="highlight">Dijital Çağa</span> Taşıyın</h1>
+                <p>Kurumunuzun dijital dönüşüm yolculuğunda güvenilir iş ortağınız oluyoruz. Teknoloji ve inovasyonla büyüme hedeflerinizi gerçekleştirin.</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn-primary">Hizmetlerimizi Keşfedin</a>
+                    <a href="#contact" class="btn-secondary">Ücretsiz Danışmanlık</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-elements">
+                    <div class="float-element">📊<br><small>Analytics</small></div>
+                    <div class="float-element">🚀<br><small>Growth</small></div>
+                    <div class="float-element">⚡<br><small>Speed</small></div>
+                </div>
+                <div class="stats-card">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Başarılı Proje</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">98%</div>
+                            <div class="stat-label">Müşteri Memnuniyeti</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Yıllık Deneyim</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Destek Hizmeti</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="services">
+        <div class="services-content">
+            <div class="section-header">
+                <h2>Kapsamlı İş Çözümleri</h2>
+                <p>Modern işletmelerin ihtiyaçlarına yönelik, kanıtlanmış metodolojilerle desteklenen profesyonel hizmetlerimizi keşfedin.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💼</div>
+                    <h3>Dijital Dönüşüm</h3>
+                    <p>İşletmenizin dijital yolculuğunu planlar ve yönetiriz. Teknoloji altyapısından süreç optimizasyonuna kadar end-to-end hizmet sunuyoruz.</p>
+                    <ul class="service-features">
+                        <li>Dijital strateji geliştirme</li>
+                        <li>Süreç otomasyonu</li>
+                        <li>Teknoloji entegrasyonu</li>
+                        <li>Değişim yönetimi</li>
+                    </ul>
+                    <a href="#" class="learn-more">Detayları İncele</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3>Veri Analizi & BI</h3>
+                    <p>Verilerinizi değerli içgörülere dönüştürüyor, iş zekası çözümleriyle karar alma süreçlerinizi güçlendiriyoruz.</p>
+                    <ul class="service-features">
+                        <li>Veri görselleştirme</li>
+                        <li>Predictive analytics</li>
+                        <li>Dashboard geliştirme</li>
+                        <li>Raporlama sistemleri</li>
+                    </ul>
+                    <a href="#" class="learn-more">Detayları İncele</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Yazılım Geliştirme</h3>
+                    <p>İşletme ihtiyaçlarınıza özel yazılım çözümleri geliştiriyor, mevcut sistemlerinizi modernize ediyoruz.</p>
+                    <ul class="service-features">
+                        <li>Web uygulamaları</li>
+                        <li>Mobil aplikasyonlar</li>
+                        <li>API entegrasyonları</li>
+                        <li>Legacy sistem modernizasyonu</li>
+                    </ul>
+                    <a href="#" class="learn-more">Detayları İncele</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">☁️</div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Bulut teknolojilerinin gücüyle altyapınızı modernize ediyor, ölçeklenebilir ve güvenli çözümler sunuyoruz.</p>
+                    <ul class="service-features">
+                        <li>Cloud migration</li>
+                        <li>DevOps implementasyonu</li>
+                        <li>Güvenlik çözümleri</li>
+                        <li>Performance optimizasyonu</li>
+                    </ul>
+                    <a href="#" class="learn-more">Detayları İncele</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Süreç Optimizasyonu</h3>
+                    <p>İş süreçlerinizi analiz ediyor, verimliliği artıran optimizasyonlar ve otomasyonlar uyguluyoruz.</p>
+                    <ul class="service-features">
+                        <li>İş süreci analizi</li>
+                        <li>Workflow optimizasyonu</li>
+                        <li>Kalite yönetimi</li>
+                        <li>Performance metrics</li>
+                    </ul>
+                    <a href="#" class="learn-more">Detayları İncele</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔒</div>
+                    <h3>Siber Güvenlik</h3>
+                    <p>Dijital varlıklarınızı korumak için kapsamlı güvenlik çözümleri uygular, risk yönetimi sağlarız.</p>
+                    <ul class="service-features">
+                        <li>Security assessment</li>
+                        <li>Penetration testing</li>
+                        <li>Compliance yönetimi</li>
+                        <li>Incident response</li>
+                    </ul>
+                    <a href="#" class="learn-more">Detayları İncele</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials">
+        <div class="testimonials-content">
+            <div class="section-header">
+                <h2>Müşterilerimiz Ne Diyor?</h2>
+                <p>Birlikte çalıştığımız kurumların başarı hikayelerini ve deneyimlerini keşfedin.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">ProBusiness ile çalışmak oyunun kurallarını değiştirdi. Dijital dönüşüm projemizi zamanında tamamladılar ve ROI'miz %300 arttı. Profesyonel yaklaşımları ve teknik uzmanlıkları mükemmel.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AK</div>
+                        <div class="author-info">
+                            <h4>Ahmet Kaya</h4>
+                            <p>CEO, TechCorp</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Veri analizi projemizde beklentilerimizi fazlasıyla karşıladılar. Karmaşık verilerimizi anlamlı insight'lara dönüştürdüler. Karar alma süreçlerimiz artık çok daha hızlı ve etkili.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SY</div>
+                        <div class="author-info">
+                            <h4>Serpil Yılmaz</h4>
+                            <p>CTO, DataFlow</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-text">Cloud migration projemizi sorunsuz bir şekilde tamamladılar. Sistem performansımız %200 arttı, maliyetlerimiz %40 azaldı. 7/24 destek hizmetleri de çok değerli.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MÖ</div>
+                        <div class="author-info">
+                            <h4>Mehmet Özkan</h4>
+                            <p>IT Director, GlobalTech</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Başarı Yolculuğunuza Başlayın</h2>
+            <p>Uzman ekibimizle tanışın ve işletmeniz için özel çözümler geliştirmeye hemen başlayalım. Ücretsiz konsültasyon için iletişime geçin.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn-white">Ücretsiz Konsültasyon Al</a>
+                <a href="#services" class="btn-secondary">Hizmetlerimizi İncele</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>🏢 ProBusiness</h3>
+                <p>15 yıllık deneyimimizle, kurumların dijital dönüşüm yolculuğunda güvenilir iş ortağı oluyoruz. İnovasyonu işinizin merkezine koyuyoruz.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">💼</a>
+                    <a href="#" class="social-link">📸</a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Hizmetlerimiz</h4>
+                <a href="#">Dijital Dönüşüm</a>
+                <a href="#">Yazılım Geliştirme</a>
+                <a href="#">Veri Analizi</a>
+                <a href="#">Cloud Solutions</a>
+                <a href="#">Siber Güvenlik</a>
+                <a href="#">Süreç Optimizasyonu</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Sektörler</h4>
+                <a href="#">Finansal Hizmetler</a>
+                <a href="#">E-ticaret</a>
+                <a href="#">Sağlık</a>
+                <a href="#">Üretim</a>
+                <a href="#">Eğitim</a>
+                <a href="#">Kamu</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>İletişim</h4>
+                <a href="tel:+902121234567">+90 212 123 45 67</a>
+                <a href="mailto:info@probusiness.com">info@probusiness.com</a>
+                <a href="#">Merkez Ofis: İstanbul</a>
+                <a href="#">Şube: Ankara</a>
+                <a href="#">7/24 Destek Hattı</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ProBusiness. Tüm hakları saklıdır. | ISO 27001 & ISO 9001 Sertifikalı</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = '#ffffff';
+                header.style.backdropFilter = 'none';
+            }
+        });
+        
+        // Stats counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            
+            counters.forEach(counter => {
+                const target = counter.textContent.replace(/[^0-9]/g, '');
+                const count = +target;
+                const increment = count / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < count) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current) + (counter.textContent.includes('%') ? '%' : '+');
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = counter.textContent.includes('%') ? count + '%' : count + '+';
+                    }
+                };
+                
+                // Start animation when element is visible
+                const observer = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting) {
+                        updateCounter();
+                        observer.disconnect();
+                    }
+                });
+                
+                observer.observe(counter);
+            });
+        }
+        
+        // Initialize animations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            animateCounters();
+        });
+        
+        // Form submissions (mock)
+        document.querySelectorAll('.btn-primary, .btn-white').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.textContent.includes('Konsültasyon')) {
+                    e.preventDefault();
+                    this.style.background = '#10b981';
+                    this.textContent = '✓ Mesajınız Alındı';
+                    setTimeout(() => {
+                        this.style.background = '';
+                        this.textContent = this.textContent.includes('Ücretsiz') ? 'Ücretsiz Konsültasyon Al' : 'Ücretsiz Konsültasyon';
+                    }, 3000);
+                }
+            });
+        });
+        
+        // Business Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const businessMobileMenuToggle = document.getElementById('businessMobileMenuToggle');
+            const businessMobileMenuOverlay = document.getElementById('businessMobileMenuOverlay');
+            const businessMobileNav = document.getElementById('businessMobileNav');
+            
+            // Check if elements exist
+            if (!businessMobileMenuToggle || !businessMobileMenuOverlay || !businessMobileNav) {
+                console.log('Business mobile menu elements not found');
+                return;
+            }
+            
+            function toggleBusinessMobileMenu() {
+                businessMobileMenuToggle.classList.toggle('active');
+                businessMobileMenuOverlay.classList.toggle('active');
+                businessMobileNav.classList.toggle('active');
+                
+                if (businessMobileMenuOverlay.classList.contains('active')) {
+                    businessMobileMenuOverlay.style.display = 'block';
+                    businessMobileNav.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    setTimeout(() => {
+                        businessMobileMenuOverlay.style.display = 'none';
+                        businessMobileNav.style.display = 'none';
+                    }, 300);
+                    document.body.style.overflow = 'auto';
+                }
+            }
+            
+            businessMobileMenuToggle.addEventListener('click', toggleBusinessMobileMenu);
+            
+            businessMobileMenuOverlay.addEventListener('click', toggleBusinessMobileMenu);
+            
+            // Close mobile menu when clicking on a link
+            businessMobileNav.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' && !e.target.classList.contains('business-mobile-cta')) {
+                    toggleBusinessMobileMenu();
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    businessMobileMenuToggle.classList.remove('active');
+                    businessMobileMenuOverlay.classList.remove('active');
+                    businessMobileNav.classList.remove('active');
+                    businessMobileMenuOverlay.style.display = 'none';
+                    businessMobileNav.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

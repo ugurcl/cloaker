@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechBlog - Teknoloji ve Yaşam | Yazılım Geliştirme ve AI Rehberleri</title>
+    <meta name="description" content="Teknoloji, yazılım geliştirme, yapay zeka ve dijital dönüşüm üzerine güncel makaleler, rehberler ve uzman görüşleri. Programlama dünyasında ki son gelişmeleri keşfedin.">
+    <meta name="keywords" content="teknoloji blog, yazılım geliştirme, yapay zeka, web geliştirme, programlama rehberi, javascript, python, react, node.js, dijital dönüşüm, tech blog, coding">
+    <meta name="author" content="TechBlog Editörlüğü">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Turkish">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <link rel="canonical" href="https://techblog.com.tr">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techblog.com.tr">
+    <meta property="og:title" content="TechBlog - Teknoloji ve Yaşam | Yazılım Geliştirme Rehberleri">
+    <meta property="og:description" content="Teknoloji, yazılım geliştirme, yapay zeka ve dijital dönüşüm üzerine güncel makaleler, rehberler ve uzman görüşleri.">
+    <meta property="og:image" content="https://techblog.com.tr/assets/og-blog.jpg">
+    <meta property="og:site_name" content="TechBlog">
+    <meta property="og:locale" content="tr_TR">
+    <meta property="article:author" content="https://facebook.com/techblog">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://techblog.com.tr">
+    <meta property="twitter:title" content="TechBlog - Teknoloji ve Yaşam">
+    <meta property="twitter:description" content="Teknoloji, yazılım geliştirme, yapay zeka ve dijital dönüşüm üzerine güncel makaleler ve rehberler.">
+    <meta property="twitter:image" content="https://techblog.com.tr/assets/twitter-blog.jpg">
+    <meta property="twitter:site" content="@techblog">
+    <meta property="twitter:creator" content="@techblog">
+    
+    <!-- Blog-specific SEO -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-blog.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-blog-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-blog-16x16.png">
+    <link rel="manifest" href="/assets/site-blog.webmanifest">
+    
+    <!-- Blog Feed -->
+    <link rel="alternate" type="application/rss+xml" title="TechBlog RSS" href="/blog/feed.xml">
+    <link rel="alternate" type="application/atom+xml" title="TechBlog Atom" href="/blog/atom.xml">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "name": "TechBlog",
+        "description": "Teknoloji, yazılım geliştirme, yapay zeka ve dijital dönüşüm üzerine güncel makaleler ve rehberler",
+        "url": "https://techblog.com.tr",
+        "author": {
+            "@type": "Organization",
+            "name": "TechBlog Team"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "TechBlog",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://techblog.com.tr/assets/logo.png"
+            }
+        }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #f8fafc;
+            color: #334155;
+            line-height: 1.7;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .logo::before {
+            content: '💻';
+            margin-right: 10px;
+            font-size: 32px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 25px;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 8px 16px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-box input {
+            background: none;
+            border: none;
+            color: white;
+            outline: none;
+            font-size: 14px;
+            width: 200px;
+        }
+        
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+        
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .featured-post {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .featured-post:hover {
+            transform: translateY(-5px);
+        }
+        
+        .featured-image {
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 64px;
+        }
+        
+        .featured-content {
+            padding: 30px;
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #64748b;
+        }
+        
+        .post-category {
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .featured-post h2 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .featured-post p {
+            color: #64748b;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .read-more:hover {
+            color: #764ba2;
+            gap: 8px;
+        }
+        
+        .read-more::after {
+            content: '→';
+            margin-left: 5px;
+            transition: margin-left 0.3s ease;
+        }
+        
+        .posts-grid {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .post-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f1f5f9;
+        }
+        
+        .post-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+        
+        .post-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .post-card p {
+            color: #64748b;
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .widget {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        .widget-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        
+        .popular-post {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .popular-post:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .popular-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .popular-content h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+        
+        .popular-meta {
+            font-size: 12px;
+            color: #64748b;
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .category-tag {
+            background: #f8fafc;
+            color: #475569;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .category-tag:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+        
+        .newsletter {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            border-radius: 15px;
+        }
+        
+        .newsletter h3 {
+            margin-bottom: 10px;
+        }
+        
+        .newsletter p {
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+        }
+        
+        .newsletter-form button {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-form button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(255,255,255,0.3);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            background: #1e293b;
+            color: white;
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #f1f5f9;
+        }
+        
+        .footer-section a {
+            color: #94a3b8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: #667eea;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            color: #94a3b8;
+        }
+        
+        /* Mobile First Responsive Design */
+        @media (max-width: 480px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 10px;
+            }
+            
+            .logo {
+                font-size: 24px;
+            }
+            
+            
+            .container {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 20px 10px;
+            }
+            
+            .featured-post {
+                margin-bottom: 20px;
+            }
+            
+            .featured-image {
+                height: 200px;
+                font-size: 48px;
+            }
+            
+            .featured-content {
+                padding: 20px;
+            }
+            
+            .post-meta {
+                flex-direction: column;
+                gap: 8px;
+                align-items: flex-start;
+            }
+            
+            .post-category {
+                align-self: flex-start;
+            }
+            
+            .featured-post h2 {
+                font-size: 22px;
+                line-height: 1.2;
+            }
+            
+            .featured-post p {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            .posts-grid {
+                gap: 20px;
+            }
+            
+            .post-card {
+                padding: 20px;
+            }
+            
+            .post-card h3 {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+            
+            .post-card p {
+                font-size: 14px;
+                margin-bottom: 12px;
+            }
+            
+            .widget {
+                padding: 20px;
+            }
+            
+            .widget-title {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+            
+            .popular-post {
+                margin-bottom: 15px;
+                padding-bottom: 12px;
+            }
+            
+            .popular-number {
+                width: 25px;
+                height: 25px;
+                font-size: 12px;
+            }
+            
+            .popular-content h4 {
+                font-size: 13px;
+                line-height: 1.3;
+            }
+            
+            .popular-meta {
+                font-size: 11px;
+            }
+            
+            .categories {
+                gap: 8px;
+            }
+            
+            .category-tag {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+            
+            .newsletter {
+                padding: 20px;
+            }
+            
+            .newsletter h3 {
+                font-size: 16px;
+            }
+            
+            .newsletter p {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 12px;
+            }
+            
+            .newsletter-form input {
+                padding: 10px;
+                font-size: 14px;
+            }
+            
+            .newsletter-form button {
+                padding: 10px 18px;
+                font-size: 14px;
+            }
+            
+            .social-links {
+                gap: 12px;
+                margin-top: 15px;
+            }
+            
+            .social-link {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 25px;
+                padding: 0 10px;
+            }
+            
+            .footer-section {
+                text-align: center;
+            }
+            
+            .footer-section h3 {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+            
+            .footer-bottom {
+                font-size: 12px;
+                padding: 20px 10px;
+            }
+        }
+        
+        /* Tablet Styles */
+        @media (min-width: 481px) and (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+                padding: 0 15px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .search-box input {
+                width: 200px;
+            }
+            
+            .container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 25px 15px;
+            }
+            
+            .featured-image {
+                height: 250px;
+            }
+            
+            .featured-content {
+                padding: 25px;
+            }
+            
+            .featured-post h2 {
+                font-size: 26px;
+            }
+            
+            .post-card {
+                padding: 22px;
+            }
+            
+            .post-card h3 {
+                font-size: 18px;
+            }
+            
+            .widget {
+                padding: 22px;
+            }
+            
+            .newsletter-form {
+                flex-direction: row;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+                padding: 0 15px;
+            }
+        }
+        
+        /* Large Tablet/Small Desktop */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .container {
+                grid-template-columns: 2fr 1fr;
+                gap: 35px;
+                padding: 30px 20px;
+            }
+            
+            .featured-post h2 {
+                font-size: 28px;
+            }
+            
+            .post-card h3 {
+                font-size: 19px;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* Extra Large Screens */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 40px 20px;
+            }
+            
+            .featured-post h2 {
+                font-size: 34px;
+            }
+            
+            .post-card h3 {
+                font-size: 21px;
+            }
+        }
+        
+        /* Mobile Menu Toggle */
+        .blog-mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 8px;
+            background: none;
+            border: none;
+            z-index: 1001;
+            position: relative;
+        }
+        
+        .blog-hamburger-line {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        
+        .blog-mobile-menu-toggle.active .blog-hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+        
+        .blog-mobile-menu-toggle.active .blog-hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .blog-mobile-menu-toggle.active .blog-hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Mobile Menu Overlay */
+        .blog-mobile-menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .blog-mobile-menu-overlay.active {
+            opacity: 1;
+        }
+        
+        .blog-mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -320px;
+            width: 300px;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            border-left: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 80px 30px 30px;
+            z-index: 1000;
+            transition: right 0.3s ease;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .blog-mobile-nav.active {
+            right: 0;
+        }
+        
+        .blog-mobile-nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-mobile-nav a:hover {
+            color: #f1f5f9;
+            padding-left: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .blog-mobile-nav a::before {
+            content: '';
+            position: absolute;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .blog-mobile-nav a:hover::before {
+            left: 100%;
+        }
+        
+        .blog-mobile-search {
+            margin: 20px 0;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            color: white;
+            outline: none;
+            width: 100%;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .blog-mobile-search::placeholder {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .blog-mobile-search:focus {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .blog-mobile-categories {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .blog-mobile-categories h4 {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .blog-mobile-category {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            margin: 4px 4px 4px 0;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .blog-mobile-category:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                position: relative;
+            }
+            
+            .blog-mobile-menu-toggle {
+                display: flex;
+                position: absolute;
+                right: 15px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            .nav-links {
+                display: none !important;
+            }
+            
+            .search-box {
+                display: none !important;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .blog-mobile-menu-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <a href="#" class="logo">TechBlog</a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Ana Sayfa</a></li>
+                    <li><a href="#tech">Teknoloji</a></li>
+                    <li><a href="#coding">Programlama</a></li>
+                    <li><a href="#ai">Yapay Zeka</a></li>
+                    <li><a href="#reviews">İncelemeler</a></li>
+                </ul>
+            </nav>
+            <div class="search-box">
+                <input type="text" placeholder="Ara...">
+                <span>🔍</span>
+            </div>
+            <button class="blog-mobile-menu-toggle" id="blogMobileMenuToggle">
+                <div class="blog-hamburger-line"></div>
+                <div class="blog-hamburger-line"></div>
+                <div class="blog-hamburger-line"></div>
+            </button>
+        </div>
+    </header>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="blog-mobile-menu-overlay" id="blogMobileMenuOverlay"></div>
+    
+    <!-- Mobile Navigation -->
+    <nav class="blog-mobile-nav" id="blogMobileNav">
+        <input type="text" class="blog-mobile-search" placeholder="Makale ara...">
+        <a href="#home">🏠 Ana Sayfa</a>
+        <a href="#tech">💻 Teknoloji</a>
+        <a href="#coding">⌨️ Programlama</a>
+        <a href="#ai">🤖 Yapay Zeka</a>
+        <a href="#reviews">📝 İncelemeler</a>
+        <div class="blog-mobile-categories">
+            <h4>Popüler Kategoriler</h4>
+            <a href="#" class="blog-mobile-category">React</a>
+            <a href="#" class="blog-mobile-category">Node.js</a>
+            <a href="#" class="blog-mobile-category">Python</a>
+            <a href="#" class="blog-mobile-category">AI/ML</a>
+            <a href="#" class="blog-mobile-category">DevOps</a>
+            <a href="#" class="blog-mobile-category">Mobile</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <main class="main-content">
+            <article class="featured-post">
+                <div class="featured-image">🤖</div>
+                <div class="featured-content">
+                    <div class="post-meta">
+                        <span class="post-category">Yapay Zeka</span>
+                        <span>15 Aralık 2024</span>
+                        <span>5 dk okuma</span>
+                    </div>
+                    <h2>ChatGPT-4 vs Claude 3: Hangi AI Asistanı Daha İyi?</h2>
+                    <p>Yapay zeka dünyasının en popüler iki asistanını karşılaştırıyoruz. Performans, güvenilirlik ve kullanım kolaylığı açısından detaylı analiz.</p>
+                    <a href="#" class="read-more">Devamını Oku</a>
+                </div>
+            </article>
+            
+            <div class="posts-grid">
+                <article class="post-card">
+                    <div class="post-meta">
+                        <span class="post-category">Web Geliştirme</span>
+                        <span>14 Aralık 2024</span>
+                    </div>
+                    <h3>React 19'da Neler Yeni? Kapsamlı Rehber</h3>
+                    <p>React'ın son sürümündeki yenilikler, performans iyileştirmeleri ve geliştiriciler için önemli değişiklikler.</p>
+                    <a href="#" class="read-more">Devamını Oku</a>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-meta">
+                        <span class="post-category">Mobil</span>
+                        <span>13 Aralık 2024</span>
+                    </div>
+                    <h3>Flutter vs React Native 2024 Karşılaştırması</h3>
+                    <p>Cross-platform uygulama geliştirmede hangi framework'ü seçmelisiniz? Detaylı karşılaştırma ve öneriler.</p>
+                    <a href="#" class="read-more">Devamını Oku</a>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-meta">
+                        <span class="post-category">DevOps</span>
+                        <span>12 Aralık 2024</span>
+                    </div>
+                    <h3>Docker ve Kubernetes: Yeni Başlayanlar İçin Rehber</h3>
+                    <p>Container teknolojilerinin temellerini öğrenin ve modern uygulama deployment süreçlerini keşfedin.</p>
+                    <a href="#" class="read-more">Devamını Oku</a>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-meta">
+                        <span class="post-category">Güvenlik</span>
+                        <span>11 Aralık 2024</span>
+                    </div>
+                    <h3>2024'te Siber Güvenlik Trendleri</h3>
+                    <p>Bu yıl dikkat edilmesi gereken siber güvenlik tehditleri ve korunma yöntemleri üzerine kapsamlı analiz.</p>
+                    <a href="#" class="read-more">Devamını Oku</a>
+                </article>
+                
+                <article class="post-card">
+                    <div class="post-meta">
+                        <span class="post-category">Blockchain</span>
+                        <span>10 Aralık 2024</span>
+                    </div>
+                    <h3>Web3 ve Merkeziyetsiz Uygulamalar (DApp)</h3>
+                    <p>Blockchain teknolojisinin geleceği ve merkeziyetsiz internet vizyonunu anlatan detaylı makale.</p>
+                    <a href="#" class="read-more">Devamını Oku</a>
+                </article>
+            </div>
+        </main>
+        
+        <aside class="sidebar">
+            <div class="widget">
+                <h3 class="widget-title">En Çok Okunanlar</h3>
+                <div class="popular-post">
+                    <div class="popular-number">1</div>
+                    <div class="popular-content">
+                        <h4>JavaScript'te Async/Await Kullanımı</h4>
+                        <div class="popular-meta">25,431 görüntülenme</div>
+                    </div>
+                </div>
+                <div class="popular-post">
+                    <div class="popular-number">2</div>
+                    <div class="popular-content">
+                        <h4>Python ile Makine Öğrenmesi</h4>
+                        <div class="popular-meta">18,256 görüntülenme</div>
+                    </div>
+                </div>
+                <div class="popular-post">
+                    <div class="popular-number">3</div>
+                    <div class="popular-content">
+                        <h4>API Tasarımında Best Practices</h4>
+                        <div class="popular-meta">14,892 görüntülenme</div>
+                    </div>
+                </div>
+                <div class="popular-post">
+                    <div class="popular-number">4</div>
+                    <div class="popular-content">
+                        <h4>Git Workflow Stratejileri</h4>
+                        <div class="popular-meta">12,734 görüntülenme</div>
+                    </div>
+                </div>
+                <div class="popular-post">
+                    <div class="popular-number">5</div>
+                    <div class="popular-content">
+                        <h4>Cloud Computing Giriş Rehberi</h4>
+                        <div class="popular-meta">11,567 görüntülenme</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="widget">
+                <h3 class="widget-title">Kategoriler</h3>
+                <div class="categories">
+                    <a href="#" class="category-tag">Yapay Zeka (45)</a>
+                    <a href="#" class="category-tag">Web Dev (38)</a>
+                    <a href="#" class="category-tag">Mobile (24)</a>
+                    <a href="#" class="category-tag">DevOps (19)</a>
+                    <a href="#" class="category-tag">Blockchain (15)</a>
+                    <a href="#" class="category-tag">IoT (12)</a>
+                    <a href="#" class="category-tag">Güvenlik (28)</a>
+                    <a href="#" class="category-tag">Cloud (22)</a>
+                </div>
+            </div>
+            
+            <div class="widget newsletter">
+                <h3>📬 Haftalık Bülten</h3>
+                <p>En yeni teknoloji haberlerini ve makaleleri e-posta kutunuzda alın</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="E-posta adresiniz">
+                    <button>Abone Ol</button>
+                </div>
+                <div class="social-links">
+                    <a href="#" class="social-link">📘</a>
+                    <a href="#" class="social-link">🐦</a>
+                    <a href="#" class="social-link">💼</a>
+                    <a href="#" class="social-link">📸</a>
+                </div>
+            </div>
+            
+            <div class="widget">
+                <h3 class="widget-title">Tavsiye Edilen</h3>
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <div style="padding: 15px; background: #f8fafc; border-radius: 10px; border-left: 4px solid #667eea;">
+                        <h4 style="font-size: 14px; margin-bottom: 8px; color: #334155;">📚 Ücretsiz JavaScript Kursu</h4>
+                        <p style="font-size: 12px; color: #64748b;">Sıfırdan JavaScript öğrenmek isteyenler için kapsamlı video eğitimi</p>
+                    </div>
+                    <div style="padding: 15px; background: #f8fafc; border-radius: 10px; border-left: 4px solid #10b981;">
+                        <h4 style="font-size: 14px; margin-bottom: 8px; color: #334155;">🎯 React Bootcamp</h4>
+                        <p style="font-size: 12px; color: #64748b;">Modern web uygulamaları geliştirmek için React ekosistemi</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TechBlog</h3>
+                <p style="color: #94a3b8; line-height: 1.6;">Teknoloji dünyasındaki en son gelişmeleri takip edin. Yazılım, yapay zeka ve dijital dönüşüm konularında kaliteli içerik.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Kategoriler</h3>
+                <a href="#">Yapay Zeka</a>
+                <a href="#">Web Geliştirme</a>
+                <a href="#">Mobil Uygulama</a>
+                <a href="#">DevOps</a>
+                <a href="#">Siber Güvenlik</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Kaynaklar</h3>
+                <a href="#">Rehberler</a>
+                <a href="#">Kod Örnekleri</a>
+                <a href="#">Video Dersler</a>
+                <a href="#">E-kitaplar</a>
+                <a href="#">Podcast</a>
+            </div>
+            
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <a href="mailto:info@techblog.com">info@techblog.com</a>
+                <a href="#">Hakkımızda</a>
+                <a href="#">Gizlilik Politikası</a>
+                <a href="#">Kullanım Şartları</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 TechBlog. Tüm hakları saklıdır. Made with ❤️ for developers</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Dinamik tarih güncelleme
+        document.addEventListener('DOMContentLoaded', function() {
+            const dates = document.querySelectorAll('.post-meta span:nth-child(2)');
+            const today = new Date();
+            
+            dates.forEach((dateEl, index) => {
+                const daysAgo = index + 1;
+                const postDate = new Date(today);
+                postDate.setDate(today.getDate() - daysAgo);
+                
+                const options = { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                };
+                dateEl.textContent = postDate.toLocaleDateString('tr-TR', options);
+            });
+        });
+        
+        // Search box functionality
+        const searchInput = document.querySelector('.search-box input');
+        searchInput.addEventListener('focus', function() {
+            this.parentElement.style.background = 'rgba(255, 255, 255, 0.3)';
+        });
+        
+        searchInput.addEventListener('blur', function() {
+            this.parentElement.style.background = 'rgba(255, 255, 255, 0.2)';
+        });
+        
+        // Newsletter form
+        const newsletterForm = document.querySelector('.newsletter-form button');
+        newsletterForm.addEventListener('click', function(e) {
+            e.preventDefault();
+            const email = this.previousElementSibling.value;
+            if (email) {
+                this.textContent = '✓ Başarılı!';
+                this.style.background = '#10b981';
+                setTimeout(() => {
+                    this.textContent = 'Abone Ol';
+                    this.style.background = 'white';
+                    this.previousElementSibling.value = '';
+                }, 2000);
+            }
+        });
+        
+        // Blog Mobile Menu Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const blogMobileMenuToggle = document.getElementById('blogMobileMenuToggle');
+            const blogMobileMenuOverlay = document.getElementById('blogMobileMenuOverlay');
+            const blogMobileNav = document.getElementById('blogMobileNav');
+            
+            // Check if elements exist
+            if (!blogMobileMenuToggle || !blogMobileMenuOverlay || !blogMobileNav) {
+                console.log('Blog mobile menu elements not found');
+                return;
+            }
+            
+            function toggleBlogMobileMenu() {
+                blogMobileMenuToggle.classList.toggle('active');
+                blogMobileMenuOverlay.classList.toggle('active');
+                blogMobileNav.classList.toggle('active');
+                
+                if (blogMobileMenuOverlay.classList.contains('active')) {
+                    blogMobileMenuOverlay.style.display = 'block';
+                    blogMobileNav.style.display = 'block';
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    setTimeout(() => {
+                        blogMobileMenuOverlay.style.display = 'none';
+                        blogMobileNav.style.display = 'none';
+                    }, 300);
+                    document.body.style.overflow = 'auto';
+                }
+            }
+            
+            blogMobileMenuToggle.addEventListener('click', toggleBlogMobileMenu);
+            
+            blogMobileMenuOverlay.addEventListener('click', toggleBlogMobileMenu);
+            
+            // Close mobile menu when clicking on a link
+            blogMobileNav.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A' && !e.target.classList.contains('blog-mobile-category')) {
+                    toggleBlogMobileMenu();
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 768) {
+                    blogMobileMenuToggle.classList.remove('active');
+                    blogMobileMenuOverlay.classList.remove('active');
+                    blogMobileNav.classList.remove('active');
+                    blogMobileMenuOverlay.style.display = 'none';
+                    blogMobileNav.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

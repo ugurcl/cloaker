@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Admin Login</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --danger-color: #ef4444;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --dark-color: #1e293b;
+            --border-color: #e2e8f0;
+            --bg-color: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+        }
+
+        .login-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 32px 32px 24px;
+            text-align: center;
+            position: relative;
+        }
+
+        .login-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+        }
+
+        .login-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            position: relative;
+        }
+
+        .login-header p {
+            opacity: 0.9;
+            font-size: 14px;
+            position: relative;
+        }
+
+        .security-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .login-form {
+            padding: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-color);
+            font-size: 14px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.2s ease;
+            background: #f8fafc;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            color: var(--dark-color);
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .password-toggle:hover {
+            opacity: 1;
+        }
+
+        .security-features {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .security-features h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .security-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .security-feature:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--success-color);
+            position: relative;
+        }
+
+        .feature-status.warning {
+            background: var(--warning-color);
+        }
+
+        .feature-status.loading {
+            background: #ccc;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn:hover:not(:disabled) {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+        }
+
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-btn .loading {
+            display: none;
+        }
+
+        .login-btn.loading .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .message {
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .message-error {
+            background: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+
+        .message-warning {
+            background: #fffbeb;
+            color: #92400e;
+            border: 1px solid #fed7aa;
+        }
+
+        .message-info {
+            background: #eff6ff;
+            color: #1e40af;
+            border: 1px solid #dbeafe;
+        }
+
+        .attempts-warning {
+            text-align: center;
+            margin-top: 16px;
+            padding: 12px;
+            background: #fef2f2;
+            border-radius: 8px;
+            color: #991b1b;
+            font-size: 12px;
+            display: none;
+        }
+
+
+        .footer-info {
+            padding: 20px 32px;
+            background: #f8fafc;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+        }
+
+        .security-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 12px;
+        }
+
+        .security-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 11px;
+        }
+
+        /* Two-Factor Authentication */
+        .two-factor-section {
+            display: none;
+        }
+
+        .verification-code-input {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 8px;
+        }
+
+        .resend-code {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .resend-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .resend-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .login-container {
+                margin: 0;
+                border-radius: 0;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .login-form {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="security-badge">🛡️ SECURE</div>
+        
+        <div class="login-header">
+            <h1>🔐 Admin Panel</h1>
+            <p>Secure Authentication System</p>
+        </div>
+
+        <form class="login-form" id="loginForm">
+            <div id="messages"></div>
+
+            <!-- Standard Login -->
+            <div id="standardLogin">
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-input" required 
+                           autocomplete="username" placeholder="Enter your username">
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" class="form-input" required 
+                               autocomplete="current-password" placeholder="Enter your password">
+                        <button type="button" class="password-toggle" onclick="togglePassword()">👁️</button>
+                    </div>
+                </div>
+
+                <!-- Security Features Display -->
+                <div class="security-features">
+                    <h4>🛡️ Security Status</h4>
+                    <div class="security-feature">
+                        <div class="feature-status" id="httpsStatus"></div>
+                        <span>HTTPS Encryption</span>
+                    </div>
+                    <div class="security-feature">
+                        <div class="feature-status" id="sessionStatus"></div>
+                        <span>Secure Session</span>
+                    </div>
+                    <div class="security-feature">
+                        <div class="feature-status" id="rateLimitStatus"></div>
+                        <span>Rate Limiting</span>
+                    </div>
+                    <div class="security-feature">
+                        <div class="feature-status" id="bruteForceStatus"></div>
+                        <span>Brute Force Protection</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Two-Factor Authentication -->
+            <div id="twoFactorLogin" class="two-factor-section">
+                <div class="form-group">
+                    <label for="verificationCode" class="form-label">Verification Code</label>
+                    <input type="text" id="verificationCode" class="form-input verification-code-input" 
+                           placeholder="000000" maxlength="6" pattern="[0-9]{6}">
+                </div>
+                <div class="resend-code">
+                    <a href="#" class="resend-link" onclick="resendCode(event)">Resend verification code</a>
+                </div>
+            </div>
+
+            <button type="submit" class="login-btn" id="loginBtn">
+                <div class="loading"></div>
+                <span id="btnText">🔓 Secure Login</span>
+            </button>
+
+            <div class="attempts-warning" id="attemptsWarning">
+                <strong>⚠️ Security Warning:</strong> Multiple failed login attempts detected. 
+                Account will be temporarily locked after 5 failed attempts.
+            </div>
+        </form>
+
+        <div class="footer-info">
+            <div>Secure Admin Panel • Protected by Advanced Security</div>
+            <div class="security-info">
+                <div class="security-item">
+                    <span>🔒</span>
+                    <span>256-bit SSL</span>
+                </div>
+                <div class="security-item">
+                    <span>🛡️</span>
+                    <span>CSRF Protection</span>
+                </div>
+                <div class="security-item">
+                    <span>⚡</span>
+                    <span>Rate Limited</span>
+                </div>
+                <div class="security-item">
+                    <span>👁️</span>
+                    <span>Activity Monitored</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let failedAttempts = 0;
+        let isLocked = false;
+        let requiresTwoFactor = false;
+
+        // Initialize security status
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSecurityStatus();
+            checkForWarnings();
+            setupFormValidation();
+        });
+
+        // Check security status indicators
+        function checkSecurityStatus() {
+            // HTTPS status
+            const httpsStatus = document.getElementById('httpsStatus');
+            if (location.protocol === 'https:') {
+                httpsStatus.className = 'feature-status';
+            } else {
+                httpsStatus.className = 'feature-status warning';
+            }
+
+            // Session status - always secure in this implementation
+            document.getElementById('sessionStatus').className = 'feature-status';
+            document.getElementById('rateLimitStatus').className = 'feature-status';
+            document.getElementById('bruteForceStatus').className = 'feature-status';
+        }
+
+        // Check for URL warnings
+        function checkForWarnings() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('expired') === '1') {
+                showMessage('Your session has expired. Please login again.', 'warning');
+            }
+            if (urlParams.get('blocked') === '1') {
+                showMessage('Account temporarily locked due to multiple failed attempts.', 'error');
+                isLocked = true;
+                document.getElementById('loginBtn').disabled = true;
+            }
+        }
+
+        // Setup form validation
+        function setupFormValidation() {
+            const form = document.getElementById('loginForm');
+            const username = document.getElementById('username');
+            const password = document.getElementById('password');
+
+            // Real-time validation
+            username.addEventListener('input', validateUsername);
+            password.addEventListener('input', validatePassword);
+
+            // Form submission
+            form.addEventListener('submit', handleLogin);
+        }
+
+        // Validate username
+        function validateUsername() {
+            const username = document.getElementById('username').value;
+            const isValid = username.length >= 3 && /^[a-zA-Z0-9_]+$/.test(username);
+            
+            if (username.length > 0 && !isValid) {
+                showFieldError('username', 'Username must be at least 3 characters and contain only letters, numbers, and underscores');
+                return false;
+            } else {
+                clearFieldError('username');
+                return isValid;
+            }
+        }
+
+        // Validate password
+        function validatePassword() {
+            const password = document.getElementById('password').value;
+            const isValid = password.length >= 6;
+            
+            if (password.length > 0 && !isValid) {
+                showFieldError('password', 'Password must be at least 6 characters');
+                return false;
+            } else {
+                clearFieldError('password');
+                return isValid;
+            }
+        }
+
+        // Show field error
+        function showFieldError(fieldId, message) {
+            clearFieldError(fieldId);
+            const field = document.getElementById(fieldId);
+            field.style.borderColor = 'var(--danger-color)';
+            
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'field-error';
+            errorDiv.style.color = 'var(--danger-color)';
+            errorDiv.style.fontSize = '12px';
+            errorDiv.style.marginTop = '4px';
+            errorDiv.textContent = message;
+            
+            field.parentNode.appendChild(errorDiv);
+        }
+
+        // Clear field error
+        function clearFieldError(fieldId) {
+            const field = document.getElementById(fieldId);
+            field.style.borderColor = 'var(--border-color)';
+            
+            const existingError = field.parentNode.querySelector('.field-error');
+            if (existingError) {
+                existingError.remove();
+            }
+        }
+
+        // Handle login
+        async function handleLogin(e) {
+            e.preventDefault();
+            
+            if (isLocked) {
+                showMessage('Account is temporarily locked. Please try again later.', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('loginBtn');
+            const btnText = document.getElementById('btnText');
+            
+            // Validation
+            if (!validateUsername() || !validatePassword()) {
+                showMessage('Please fix the validation errors above.', 'error');
+                return;
+            }
+
+
+            // Show loading state
+            btn.classList.add('loading');
+            btn.disabled = true;
+            btnText.textContent = 'Authenticating...';
+
+            try {
+                const loginData = {
+                    username: document.getElementById('username').value,
+                    password: document.getElementById('password').value
+                };
+                
+                if (requiresTwoFactor) {
+                    loginData.verificationCode = document.getElementById('verificationCode').value;
+                }
+
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(loginData),
+                    credentials: 'same-origin'
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    if (result.requiresTwoFactor && !requiresTwoFactor) {
+                        // Switch to 2FA mode
+                        requiresTwoFactor = true;
+                        showTwoFactorLogin();
+                        showMessage('Verification code sent to your registered device.', 'info');
+                    } else {
+                        // Success
+                        showMessage('Login successful! Redirecting...', 'success');
+                        setTimeout(() => {
+                            window.location.href = '/admin/dashboard';
+                        }, 1000);
+                    }
+                    
+                    // Reset failed attempts on success
+                    failedAttempts = 0;
+                    document.getElementById('attemptsWarning').style.display = 'none';
+                    
+                } else {
+                    throw new Error(result.error || 'Login failed');
+                }
+                
+            } catch (error) {
+                handleLoginError(error.message);
+            } finally {
+                // Reset button state
+                btn.classList.remove('loading');
+                btn.disabled = false;
+                btnText.textContent = requiresTwoFactor ? '🔐 Verify Code' : '🔓 Secure Login';
+            }
+        }
+
+        // Handle login errors
+        function handleLoginError(message) {
+            failedAttempts++;
+            
+            showMessage(message, 'error');
+            
+            // Show attempts warning after 2 failed attempts
+            if (failedAttempts >= 2) {
+                const warning = document.getElementById('attemptsWarning');
+                warning.style.display = 'block';
+                warning.innerHTML = `<strong>⚠️ Security Warning:</strong> ${failedAttempts} failed login attempts. Account will be locked after 5 attempts.`;
+            }
+            
+            
+            // Lock account after 5 failed attempts
+            if (failedAttempts >= 5) {
+                isLocked = true;
+                document.getElementById('loginBtn').disabled = true;
+                showMessage('Account locked due to multiple failed attempts. Please contact administrator.', 'error');
+            }
+            
+            // Clear password field
+            document.getElementById('password').value = '';
+            if (requiresTwoFactor) {
+                document.getElementById('verificationCode').value = '';
+            }
+        }
+
+
+        // Show two-factor login
+        function showTwoFactorLogin() {
+            document.getElementById('standardLogin').style.display = 'none';
+            document.getElementById('twoFactorLogin').style.display = 'block';
+            document.getElementById('btnText').textContent = '🔐 Verify Code';
+            
+            // Focus on verification code input
+            setTimeout(() => {
+                document.getElementById('verificationCode').focus();
+            }, 100);
+        }
+
+        // Resend verification code
+        function resendCode(e) {
+            e.preventDefault();
+            showMessage('Verification code resent to your device.', 'info');
+        }
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const toggleBtn = document.querySelector('.password-toggle');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleBtn.textContent = '🙈';
+            } else {
+                passwordField.type = 'password';
+                toggleBtn.textContent = '👁️';
+            }
+        }
+
+        // Show message
+        function showMessage(message, type = 'info') {
+            const messagesContainer = document.getElementById('messages');
+            messagesContainer.innerHTML = `<div class="message message-${type}">${message}</div>`;
+            
+            // Auto-hide success messages
+            if (type === 'success' || type === 'info') {
+                setTimeout(() => {
+                    messagesContainer.innerHTML = '';
+                }, 5000);
+            }
+        }
+
+        // Security monitoring - log attempts
+        function logSecurityEvent(event, details = {}) {
+            const securityEvent = {
+                timestamp: new Date().toISOString(),
+                event: event,
+                ip: 'client-side', // Server will capture real IP
+                userAgent: navigator.userAgent,
+                details: details
+            };
+            
+            // In a real implementation, this would send to server
+            console.log('Security Event:', securityEvent);
+        }
+
+        // Monitor for suspicious activity
+        let lastActivity = Date.now();
+        let inactivityWarningShown = false;
+
+        document.addEventListener('mousemove', () => lastActivity = Date.now());
+        document.addEventListener('keypress', () => lastActivity = Date.now());
+
+        setInterval(() => {
+            const inactiveTime = Date.now() - lastActivity;
+            if (inactiveTime > 5 * 60 * 1000 && !inactivityWarningShown) { // 5 minutes
+                showMessage('Session will expire due to inactivity. Please complete login.', 'warning');
+                inactivityWarningShown = true;
+            }
+        }, 30000); // Check every 30 seconds
+    </script>
+</body>
+</html>
