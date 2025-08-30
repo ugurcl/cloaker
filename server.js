@@ -118,7 +118,7 @@ const isBotIP = (ip) => {
 // Load bot IPs on startup
 loadBotIPs();
 
-const detectBot = (userAgent) => {
+const detectBot = (userAgent, headers = {}) => {
   const botPatterns = [
     /googlebot/i,
     /bingbot/i,
@@ -147,9 +147,84 @@ const detectBot = (userAgent) => {
     /webpagetest/i,
     /speed/i,
     /test/i,
+    // AI Crawlers and Assistants
+    /gemini/i,
+    /bard/i,
+    /grok/i,
+    /claude/i,
+    /chatgpt/i,
+    /openai/i,
+    /anthropic/i,
+    /perplexity/i,
+    /you\.com/i,
+    /search\.brave/i,
+    /duckassist/i,
+    /ai/i,
+    /assistant/i,
+    /preview/i,
+    /research/i,
+    /scan/i,
+    /fetch/i,
+    /curl/i,
+    /wget/i,
+    /python/i,
+    /requests/i,
+    /axios/i,
+    /node/i,
+    /headless/i,
+    /phantom/i,
+    /selenium/i,
+    /puppeteer/i,
+    /playwright/i,
+    /scraper/i,
+    /parser/i,
+    /analyzer/i,
+    /validator/i,
+    /monitor/i,
+    /check/i
   ];
 
-  return botPatterns.some((pattern) => pattern.test(userAgent));
+  // Check User-Agent patterns
+  if (botPatterns.some((pattern) => pattern.test(userAgent))) {
+    return true;
+  }
+
+  // Check suspicious headers that AI/bots use
+  const suspiciousHeaders = [
+    'x-requested-with',
+    'x-forwarded-for',
+    'x-real-ip',
+    'x-remote-addr',
+    'x-cluster-client-ip',
+    'cf-connecting-ip',
+    'fastly-client-ip',
+    'x-forwarded-proto',
+    'x-forwarded-host'
+  ];
+
+  // AI tools often have missing or unusual headers
+  const normalBrowserHeaders = ['accept', 'accept-language', 'accept-encoding', 'cache-control'];
+  const missingHeaders = normalBrowserHeaders.filter(header => !headers[header]);
+  
+  // If missing too many normal browser headers, likely a bot
+  if (missingHeaders.length >= 3) {
+    console.log(`[BOT DETECTED] Missing browser headers: ${missingHeaders.join(', ')}`);
+    return true;
+  }
+
+  // Check for AI-specific headers or values
+  const headerValues = Object.values(headers).join(' ').toLowerCase();
+  if (headerValues.includes('ai') || 
+      headerValues.includes('bot') || 
+      headerValues.includes('crawler') ||
+      headerValues.includes('scraper') ||
+      headerValues.includes('automated') ||
+      headerValues.includes('headless')) {
+    console.log(`[BOT DETECTED] Suspicious header values detected`);
+    return true;
+  }
+
+  return false;
 };
 
 const detectMobile = (userAgent) => {
@@ -236,7 +311,7 @@ app.use(async (req, res, next) => {
   const userAgent = req.headers["user-agent"] || "";
   const clientIp = await getClientIp(req);
   const country = detectCountry(clientIp);
-  const isBot = detectBot(userAgent);
+  const isBot = detectBot(userAgent, req.headers);
   const isMobile = detectMobile(userAgent);
   const isBotByIP = isBotIP(clientIp);
 
