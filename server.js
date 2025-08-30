@@ -41,9 +41,10 @@ app.use(logAdminActivity);
 
 db.initDatabase().catch(console.error);
 
-// Load bot IPs from file
+// Load bot IPs and User Agents from files
 let botIPs = [];
 let botCIDRs = [];
+let botUserAgents = [];
 
 const loadBotIPs = () => {
   try {
@@ -68,6 +69,22 @@ const loadBotIPs = () => {
     );
   } catch (error) {
     console.error("Error loading bot IPs:", error);
+  }
+};
+
+const loadBotUserAgents = () => {
+  try {
+    const data = fs.readFileSync(path.join(__dirname, "userAgents.txt"), "utf8");
+    botUserAgents = data
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line && line.length > 0);
+
+    console.log(
+      `Loaded ${botUserAgents.length} bot User Agents from userAgents.txt`
+    );
+  } catch (error) {
+    console.error("Error loading bot User Agents:", error);
   }
 };
 
@@ -115,10 +132,25 @@ const isBotIP = (ip) => {
   return false;
 };
 
-// Load bot IPs on startup
+// Load bot IPs and User Agents on startup
 loadBotIPs();
+loadBotUserAgents();
 
 const detectBot = (userAgent, headers = {}) => {
+  // First check exact match with userAgents.txt file
+  if (botUserAgents.includes(userAgent)) {
+    console.log(`[BOT DETECTED] Exact match from userAgents.txt: ${userAgent.substring(0, 50)}...`);
+    return true;
+  }
+  
+  // Check if any userAgent from file is contained in current userAgent
+  for (const botUA of botUserAgents) {
+    if (userAgent.toLowerCase().includes(botUA.toLowerCase())) {
+      console.log(`[BOT DETECTED] Partial match from userAgents.txt: ${botUA.substring(0, 50)}...`);
+      return true;
+    }
+  }
+
   const botPatterns = [
     /googlebot/i,
     /bingbot/i,
@@ -186,6 +218,7 @@ const detectBot = (userAgent, headers = {}) => {
 
   // Check User-Agent patterns
   if (botPatterns.some((pattern) => pattern.test(userAgent))) {
+    console.log(`[BOT DETECTED] Pattern match: ${userAgent.substring(0, 50)}...`);
     return true;
   }
 

@@ -1,0 +1,148 @@
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)
+facebookexternalhit/1.1
+facebookexternalhit/1.1;kakaotalk-scrap/1.0; +https://devtalk.kakao.com/t/scrap/33984
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0
+facebookexternalhit/1.1;line-poker/1.0
+facebookexternalhit/1.1 (compatible; Blueno/1.0; +http://naver.me/scrap)
+facebookexternalhit/1.1; Mozilla/5.0 (compatible; WorksOgCrawler/1.0.0;)
+facebookexternalhit/1.1;scrapbook-scraper/1.0; +https://blog.naver.com/whaleteam/221250531643
+facebookexternalhit/1.1;between-scrap/1.0
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0,gzip(gfe)
+FacebookExternalHit/1.0
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:213.32.4.247]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:213.32.4.211]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:213.32.4.102]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:213.32.4.245]
+facebookexternalhit/1.1(+http://www.facebook.com/externalhit_uatext.php)+Chromium/80.0.3987.163 Chrome/80.0.3987.163 Safari/537.36
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:213.32.4.224]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:213.32.4.81]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:213.32.4.95]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:213.32.4.115]
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0 [ip:213.32.4.81]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) Trident/7.0; Sleipnir6/6.4.4; SleipnirSiteUpdates/6.4.4)
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)+Mozilla/5.0 (Android 6.0.1; Xiaomi Redmi 4A) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome
+facebookexternalhit/1.1;line-poker/1.0,gzip(gfe)
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Twitterbot/1.0
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) _zbot
+facebookexternalhit/1.1; Mozilla/5.0 (compatible; NaverTalk/1.0) ogcrawler
+facebookexternalhit/1.1 (+https://www.facebook.com/externalhit_uatext.php)
+facebookexternalhit/1.1; kakaotalk-scrap/1.0; +https://devtalk.kakao.com/t/scrap/33984,gzip(gfe)
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML%2C like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot Twitterbot/1.0
+facebookexternalhit/1.2 (+http://www.facebook.com/externalhit_uatext.php)
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.3]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.119]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.6]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.5]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.95.23]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:69.171.251.16]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.6]
+facebookexternalhit/1.1 (compatible; Blueno/1.0; +https://naver.me/scrap)
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:69.171.251.13]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.5]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.95.5]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.115.15]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.117]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.20]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.4]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.87.21]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.7]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:69.171.251.9]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.115.3]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.120]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.115.12]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.25]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.120
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.11
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.171.249.24
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.79.24
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.171.249.8
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.127.2
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.171.249.2
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.83.14
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.171.231.5
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.79.18
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.171.249.12
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.79.6
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.171.249.3
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.171.249.17
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.103.5
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.63.189.4
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.103.11
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.8
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.30
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.24
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.14
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.83.118
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.111.1
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.4
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.15
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.107.3
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.29
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.111.6
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.87.17
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.17
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.171.231.120
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.20
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.111.3
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.26
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.103.119
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.63.189.119
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.12
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.21
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.103.3
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.107.11
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.95.24
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.9
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.107.118
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.107.4
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.171.249.20
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.171.249.116
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.13
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:69.171.249.13
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.79.4
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.95.119
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.1
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:173.252.95.2
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.127.10
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php), XFF:31.13.115.21
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)6
+Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_1) AppleWebKit/601.2.4 (KHTML, like Gecko) Version/9.0.1 Safari/601.2.4 facebookexternalhit/1.1 Facebot
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) Device	Facebook facebookexternalhit Engine	facebookexternalhit 1.1
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) External User Agent Text - Help For Webmasters | Facebook See posts, photos and more on Facebook.
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.95.13]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:69.171.251.18]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:69.171.251.10]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.115.114]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.17]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.7]
+facebookexternalhit/1.1;line-poker/1.0 2
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.115.8]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.115.16]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.1]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.18]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.22]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.2]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.115]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.20]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.29]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.11]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.4]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.10]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.32]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.115.113]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.115.7]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.19]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.14]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.95.2]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.95.11]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.16]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.114]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:69.171.251.112]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.87.5]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.8]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:173.252.127.9]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.9]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.115.5]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:69.171.251.1]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:69.171.251.6]
+facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php) [ip:31.13.127.24]
