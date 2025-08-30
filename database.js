@@ -73,10 +73,11 @@ const getVisitorLogs = async (limit = 100) => {
     
     return logs.map(log => ({
       ...log,
-      visited_at: log.createdAt,
+      visited_at: log.createdAt || new Date(),
       is_bot: log.isBot,
       is_mobile: log.isMobile,
-      user_agent: log.userAgent
+      user_agent: log.userAgent,
+      timestamp: log.createdAt || new Date()
     }));
   } catch (error) {
     console.error('Error getting visitor logs:', error);

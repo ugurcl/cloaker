@@ -1887,7 +1887,7 @@
             if (logs && logs.length > 0) {
                 tbody.innerHTML = logs.slice(0, 10).map(log => `
                     <tr>
-                        <td>${new Date(log.timestamp).toLocaleString('tr-TR')}</td>
+                        <td>${log.timestamp ? (new Date(log.timestamp).toLocaleString ? new Date(log.timestamp).toLocaleString('tr-TR') : 'Invalid Date') : 'No Date'}</td>
                         <td><code>${log.ip}</code></td>
                         <td>${log.country || 'Unknown'}</td>
                         <td>${log.action}</td>
@@ -2260,7 +2260,7 @@
                     
                     logs.forEach(log => {
                         html += '<tr>';
-                        html += `<td>${new Date(log.timestamp).toLocaleString()}</td>`;
+                        html += `<td>${log.timestamp ? (new Date(log.timestamp).toLocaleString ? new Date(log.timestamp).toLocaleString() : 'Invalid Date') : 'No Date'}</td>`;
                         html += `<td>${log.ip}</td>`;
                         html += `<td>${log.country || 'Unknown'}</td>`;
                         html += `<td>${log.is_bot ? '✓' : '✗'}</td>`;

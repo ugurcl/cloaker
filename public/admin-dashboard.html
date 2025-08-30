@@ -583,13 +583,16 @@
                     return;
                 }
                 
-                const logsHtml = logs.map(log => `
+                const logsHtml = logs.map(log => {
+                    const visitedDate = log.visited_at ? new Date(log.visited_at) : new Date();
+                    const dateString = isNaN(visitedDate.getTime()) ? 'Invalid Date' : visitedDate.toLocaleString('tr-TR');
+                    return `
                     <tr>
-                        <td>${new Date(log.visited_at).toLocaleString('tr-TR')}</td>
+                        <td>${dateString}</td>
                         <td>${log.ip}</td>
                         <td>${log.country || '-'}</td>
                         <td><span class="badge ${log.is_bot ? 'bot' : 'human'}">${log.is_bot ? 'Bot' : 'İnsan'}</span></td>
-                        <td><span class="badge ${log.is_mobile ? 'mobile' : 'desktop'}">${log.is_mobile ? 'Mobil' : 'Desktop'}</span></td>
+                        <td><span class="badge ${log.is_mobile ? 'mobile' : 'desktop'}">${log.is_mobile ? 'Mobil' : 'Desktop'}</span></td>`;
                         <td>${log.action || '-'}</td>
                         <td title="${log.user_agent}" style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${log.user_agent}</td>
                     </tr>
