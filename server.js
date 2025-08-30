@@ -138,6 +138,15 @@ const detectBot = (userAgent) => {
     /crawler/i,
     /spider/i,
     /bot/i,
+    /lighthouse/i,
+    /pagespeed/i,
+    /gtmetrix/i,
+    /pingdom/i,
+    /uptimerobot/i,
+    /site24x7/i,
+    /webpagetest/i,
+    /speed/i,
+    /test/i,
   ];
 
   return botPatterns.some((pattern) => pattern.test(userAgent));
@@ -186,30 +195,36 @@ const getClientIp = async (req) => {
     : req.connection.remoteAddress;
 
   // Check if it's localhost and USE_REAL_IP is enabled
-  if ((!ip || ip === "::1" || ip === "127.0.0.1" || ip === "::ffff:127.0.0.1") && 
-      process.env.USE_REAL_IP === 'true') {
+  if (
+    (!ip || ip === "::1" || ip === "127.0.0.1" || ip === "::ffff:127.0.0.1") &&
+    process.env.USE_REAL_IP === "true"
+  ) {
     try {
       // Get real public IP for testing
-      const https = require('https');
+      const https = require("https");
       return new Promise((resolve) => {
-        https.get('https://api.ipify.org', (res) => {
-          let data = '';
-          res.on('data', chunk => data += chunk);
-          res.on('end', () => {
-            console.log(`[DEBUG] Real IP detected: ${data.trim()}`);
-            resolve(data.trim());
+        https
+          .get("https://api.ipify.org", (res) => {
+            let data = "";
+            res.on("data", (chunk) => (data += chunk));
+            res.on("end", () => {
+              console.log(`[DEBUG] Real IP detected: ${data.trim()}`);
+              resolve(data.trim());
+            });
+          })
+          .on("error", (err) => {
+            console.log(
+              "[DEBUG] Could not get real IP, using test IP: 8.8.8.8"
+            );
+            resolve("8.8.8.8");
           });
-        }).on('error', (err) => {
-          console.log('[DEBUG] Could not get real IP, using test IP: 8.8.8.8');
-          resolve("8.8.8.8");
-        });
       });
     } catch (error) {
-      console.log('[DEBUG] Error getting real IP, using test IP: 8.8.8.8');
+      console.log("[DEBUG] Error getting real IP, using test IP: 8.8.8.8");
       return "8.8.8.8";
     }
   }
-  
+
   if (!ip || ip === "::1" || ip === "127.0.0.1" || ip === "::ffff:127.0.0.1") {
     return "8.8.8.8";
   }
@@ -239,6 +254,11 @@ app.use(async (req, res, next) => {
       0,
       50
     )}...`
+  );
+  console.log(
+    `[DEBUG] Request URL: ${req.url}, Method: ${
+      req.method
+    }, Headers: ${JSON.stringify(req.headers, null, 2)}`
   );
 
   next();
@@ -565,7 +585,7 @@ app.post("/api/change-password", requireAuthApi, async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+app.listen(3008, "0.0.0.0", () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   console.log("Cloaking system active...");
   console.log("Admin panel: http://localhost:" + PORT + "/admin/login");
