@@ -263,53 +263,37 @@ const detectCountry = (ip) => {
   return geo ? geo.country : null;
 };
 
-const getClientIp = async (req) => {
-  const forwarded = req.headers["x-forwarded-for"];
-  let ip = forwarded
-    ? forwarded.split(",")[0].trim()
-    : req.connection.remoteAddress;
+const getClientIp = (req) => {
+  // Try multiple sources to get client IP
+  let ip = req.headers['cf-connecting-ip'] ||           // Cloudflare
+           req.headers['x-real-ip'] ||                  // Nginx proxy
+           req.headers['x-forwarded-for']?.split(',')[0]?.trim() || // Load balancer
+           req.connection.remoteAddress ||              // Standard
+           req.socket.remoteAddress ||                  // Fallback
+           req.ip;                                      // Express trust proxy
 
-  // Check if it's localhost and USE_REAL_IP is enabled
-  if (
-    (!ip || ip === "::1" || ip === "127.0.0.1" || ip === "::ffff:127.0.0.1") &&
-    process.env.USE_REAL_IP === "true"
-  ) {
-    try {
-      // Get real public IP for testing
-      const https = require("https");
-      return new Promise((resolve) => {
-        https
-          .get("https://api.ipify.org", (res) => {
-            let data = "";
-            res.on("data", (chunk) => (data += chunk));
-            res.on("end", () => {
-              console.log(`[DEBUG] Real IP detected: ${data.trim()}`);
-              resolve(data.trim());
-            });
-          })
-          .on("error", (err) => {
-            console.log(
-              "[DEBUG] Could not get real IP, using test IP: 8.8.8.8"
-            );
-            resolve("8.8.8.8");
-          });
-      });
-    } catch (error) {
-      console.log("[DEBUG] Error getting real IP, using test IP: 8.8.8.8");
-      return "8.8.8.8";
+  // Clean IPv6 mapped IPv4 addresses
+  if (ip && ip.startsWith('::ffff:')) {
+    ip = ip.substring(7);
+  }
+
+  // For localhost/development, use different IPs based on USE_REAL_IP setting
+  if (!ip || ip === "::1" || ip === "127.0.0.1" || ip === "localhost") {
+    if (process.env.USE_REAL_IP === "true") {
+      // Use Turkish IP for testing Turkish redirect
+      return "85.102.181.1"; // Turkish IP for testing
+    } else {
+      // Use foreign IP for testing
+      return "8.8.8.8"; // Google DNS (US IP)
     }
   }
 
-  if (!ip || ip === "::1" || ip === "127.0.0.1" || ip === "::ffff:127.0.0.1") {
-    return "8.8.8.8";
-  }
-
-  return ip.replace("::ffff:", "");
+  return ip;
 };
 
-app.use(async (req, res, next) => {
+app.use((req, res, next) => {
   const userAgent = req.headers["user-agent"] || "";
-  const clientIp = await getClientIp(req);
+  const clientIp = getClientIp(req);
   const country = detectCountry(clientIp);
   const isBot = detectBot(userAgent, req.headers);
   const isMobile = detectMobile(userAgent);
