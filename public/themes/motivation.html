@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivasyon Hub - Başarı ve Gelişim | Kendinizi Keşfedin</title>
+    <meta name="description" content="Kişisel gelişim, motivasyon, başarı hikayeleri ve hayat koçluğu. Hedeflerinize ulaşmak için ilham alın ve potansiyelinizi keşfedin.">
+    <meta name="keywords" content="motivasyon, kişisel gelişim, başarı, hedefler, ilham, liderlik, pozitif düşünce, yaşam koçluğu, kendini geliştirme, başarı hikayeleri">
+    <meta name="author" content="Motivasyon Hub">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Turkish">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <link rel="canonical" href="https://motivasyonhub.com.tr">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://motivasyonhub.com.tr">
+    <meta property="og:title" content="Motivasyon Hub - Başarı ve Gelişim Platformu">
+    <meta property="og:description" content="Kişisel gelişim, motivasyon ve başarı için ilham veren içerikler. Potansiyelinizi keşfedin.">
+    <meta property="og:image" content="https://motivasyonhub.com.tr/assets/og-motivation.jpg">
+    <meta property="og:site_name" content="Motivasyon Hub">
+    <meta property="og:locale" content="tr_TR">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://motivasyonhub.com.tr">
+    <meta property="twitter:title" content="Motivasyon Hub - Başarı ve Gelişim">
+    <meta property="twitter:description" content="Kişisel gelişim ve motivasyon için ilham veren platform.">
+    <meta property="twitter:image" content="https://motivasyonhub.com.tr/assets/twitter-motivation.jpg">
+    
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#f59e0b">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+    <link rel="manifest" href="/assets/site.webmanifest">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            color: #1f2937;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(245, 158, 11, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid #f59e0b;
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #f59e0b;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        
+        .logo::before {
+            content: '🚀';
+            font-size: 32px;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .nav a {
+            color: #374151;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 14px;
+        }
+        
+        .nav a:hover {
+            color: #f59e0b;
+            transform: translateY(-2px);
+        }
+        
+        .nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #f59e0b, #f97316);
+            transition: width 0.3s;
+        }
+        
+        .nav a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #f59e0b, #f97316, #dc2626);
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="stars" patternUnits="userSpaceOnUse" width="25" height="25"><circle cx="12.5" cy="12.5" r="1" fill="rgba(255,255,255,0.2)"/><circle cx="6.25" cy="6.25" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23stars)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: heroFadeIn 1.5s ease-out;
+        }
+        
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+        
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+        
+        .motivation-quote {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 40px auto;
+            max-width: 700px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            animation: quoteFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes quoteFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .motivation-quote p {
+            font-style: italic;
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+        
+        .motivation-quote cite {
+            font-size: 16px;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #ffffff, #f3f4f6);
+            color: #f59e0b;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        
+        .main-content {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #f59e0b, #f97316);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #6b7280;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+        
+        .content-card {
+            background: linear-gradient(145deg, #ffffff, #fef3c7);
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(245, 158, 11, 0.1);
+            border: 2px solid rgba(245, 158, 11, 0.1);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .content-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(245, 158, 11, 0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .content-card:hover::before {
+            left: 100%;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 20px 60px rgba(245, 158, 11, 0.2);
+            border-color: #f59e0b;
+        }
+        
+        .content-card h3 {
+            color: #f59e0b;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .content-card p {
+            color: #374151;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+        
+        .stats-section {
+            background: linear-gradient(135deg, #1f2937, #374151);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 900;
+            color: #f59e0b;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .success-stories {
+            background: #fef3c7;
+            padding: 80px 0;
+        }
+        
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .story-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(245, 158, 11, 0.15);
+            transition: transform 0.3s;
+        }
+        
+        .story-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .story-header {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .story-avatar {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+        
+        .story-content {
+            padding: 25px;
+        }
+        
+        .daily-motivation {
+            background: linear-gradient(135deg, #f59e0b, #f97316);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin: 60px 0;
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .daily-motivation::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: movePattern 20s linear infinite;
+        }
+        
+        @keyframes movePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+        
+        .daily-motivation-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer {
+            background: #111827;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h4 {
+            color: #f59e0b;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .footer-section p {
+            color: #d1d5db;
+            line-height: 1.8;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 28px;
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 10px;
+            border-radius: 50%;
+            background: rgba(245, 158, 11, 0.2);
+        }
+        
+        .social-links a:hover {
+            color: #f59e0b;
+            transform: translateY(-3px) scale(1.1);
+            background: rgba(245, 158, 11, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .nav {
+                display: none;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 200px;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #fef3c7;
+            border-top: 5px solid #f59e0b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">Motivasyon Hub</a>
+                <nav class="nav">
+                    <a href="#anasayfa">Ana Sayfa</a>
+                    <a href="#basari-hikayeleri">Başarı Hikayeleri</a>
+                    <a href="#kisisel-gelisim">Kişisel Gelişim</a>
+                    <a href="#hedefler">Hedefler</a>
+                    <a href="#koculuk">Koçluk</a>
+                    <a href="#iletisim">İletişim</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>SINIRLARI AŞ!</h1>
+                <p>Potansiyelini Keşfet • Hedeflerini Gerçekleştir • Başarıya Odaklan</p>
+                
+                <div class="motivation-quote">
+                    <p>"Başarı, hazırlık ile fırsatın buluştuğu andır. Bugün hazırlığını yap, yarın fırsatları yakala!"</p>
+                    <cite>- Motivasyon Hub</cite>
+                </div>
+                
+                <a href="#basla" class="cta-button">Hemen Başla!</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-content">
+        <div class="container">
+            <h2 class="section-title">🎯 Başarıya Giden Yolda</h2>
+            <p class="section-subtitle">Hayallerinizi gerçekleştirmek için ihtiyacınız olan tüm araçlar ve ilham burada!</p>
+            
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3>💪 Kişisel Gelişim</h3>
+                    <p>Kendinizi sürekli geliştirin, yeni beceriler kazanın ve potansiyelinizin sınırlarını zorlayın. Başarı yolculuğu kendinizle başlar!</p>
+                </div>
+                
+                <div class="content-card">
+                    <h3>🎯 Hedef Belirleme</h3>
+                    <p>SMART hedefler koyun, adım adım planlar oluşturun ve hedefinize odaklanarak ilerleyin. Her büyük başarı küçük adımlarla başlar.</p>
+                </div>
+                
+                <div class="content-card">
+                    <h3>🧠 Zihinsel Güç</h3>
+                    <p>Pozitif düşünce gücü, mental dayanıklılık ve odaklanma tekniklerini öğrenin. Zihniniz en güçlü silahınızdır!</p>
+                </div>
+                
+                <div class="content-card">
+                    <h3>⚡ Enerji Yönetimi</h3>
+                    <p>Günlük enerjinizi doğru kanallara yönlendirin, verimlilik artırın ve sürekli motivasyonunuzu yüksek tutun.</p>
+                </div>
+                
+                <div class="content-card">
+                    <h3>🏆 Başarı Alışkanlıkları</h3>
+                    <p>Başarılı insanların alışkanlıklarını benimseyin, disiplin geliştirin ve istikrarlı ilerleme kaydedin.</p>
+                </div>
+                
+                <div class="content-card">
+                    <h3>🔥 Motivasyon Kaynakları</h3>
+                    <p>Günlük motivasyon dozunuzu alın, ilham veren hikayelerle tanışın ve sürekli ileri gitmek için güç bulun.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="container">
+            <h2 style="font-size: 42px; margin-bottom: 50px; font-weight: 800;">🚀 Toplumumuzun Gücü</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Aktif Üye</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1.2M+</span>
+                    <span class="stat-label">Başarı Hikayesi</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">95%</span>
+                    <span class="stat-label">Hedeflerine Ulaşan</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">Motivasyon Desteği</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="success-stories">
+        <div class="container">
+            <h2 class="section-title">🌟 Başarı Hikayeleri</h2>
+            <p class="section-subtitle">İlham veren gerçek hikayeler ve dönüşümler</p>
+            
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-header">
+                        <div class="story-avatar">💼</div>
+                        <h3>Ahmet K.</h3>
+                        <p>Girişimci</p>
+                    </div>
+                    <div class="story-content">
+                        <p>"6 ayda kendi işimi kurdum ve ilk yıl hedeflerimin %150'sine ulaştım. Motivasyon Hub'daki stratejiler sayesinde imkansız olan mümkün oldu!"</p>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-header">
+                        <div class="story-avatar">👩‍💻</div>
+                        <h3>Elif M.</h3>
+                        <p>Yazılım Geliştiricisi</p>
+                    </div>
+                    <div class="story-content">
+                        <p>"Kariyerimde çıkmaza girmişken, burada öğrendiğim hedef belirleme teknikleriyle dream job'ımı buldum ve %40 zam aldım!"</p>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-header">
+                        <div class="story-avatar">🏃‍♂️</div>
+                        <h3>Murat T.</h3>
+                        <p>Fitness Antrenörü</p>
+                    </div>
+                    <div class="story-content">
+                        <p>"Sadece 8 ayda 25 kg verip maratona başladım. Zihinsel gücümü keşfettikten sonra fiziksel limitlerimi de aştım!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="daily-motivation">
+        <div class="container">
+            <div class="daily-motivation-content">
+                <h2 style="font-size: 42px; margin-bottom: 30px; font-weight: 800;">⚡ Günlük Motivasyon</h2>
+                <p style="font-size: 24px; margin-bottom: 20px; font-weight: 300;">"Bugün attığınız her adım, yarın olmak istediğiniz kişiye bir adım daha yakın!"</p>
+                <p style="font-size: 18px; opacity: 0.9;">Her gün yeni bir fırsat, her gün yeni bir başlangıç. Şimdi harekete geçin!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>🚀 Misyonumuz</h4>
+                    <p>İnsanların potansiyellerini keşfetmelerine ve hedeflerine ulaşmalarına yardımcı olmak. Başarı herkesin hakkı!</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>📞 İletişim</h4>
+                    <p>info@motivasyonhub.com.tr<br>
+                    +90 212 555 0789<br>
+                    İstanbul, Türkiye</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>🎯 Hizmetler</h4>
+                    <p>Kişisel Koçluk<br>
+                    Grup Eğitimleri<br>
+                    Online Kurslar<br>
+                    Başarı Planlama</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>⚡ Kaynaklar</h4>
+                    <p>Motivasyon Arşivi<br>
+                    Başarı Hikayeleri<br>
+                    Günlük Alıştırmalar<br>
+                    Ücretsiz E-kitaplar</p>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" title="Email">📧</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="Twitter">🐦</a>
+                <a href="#" title="YouTube">📺</a>
+                <a href="#" title="LinkedIn">💼</a>
+            </div>
+            
+            <p style="text-align: center; padding-top: 30px; border-top: 1px solid #374151; color: #9ca3af;">
+                &copy; 2024 Motivasyon Hub. Tüm hakları saklıdır. | Başarıya Giden Yolda Yanınızdayız!
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Dynamic motivational quotes
+        const motivationalQuotes = [
+            { text: "Başarı, hazırlık ile fırsatın buluştuğu andır.", author: "Motivasyon Hub" },
+            { text: "Büyük hedefler küçük adımlarla gerçekleşir.", author: "Success Coach" },
+            { text: "Bugün attığınız her adım, yarının temelini atar.", author: "Personal Growth" },
+            { text: "Sınırlarınız sadece zihninizdedir, onları aşmaya hazır olun!", author: "Mind Power" },
+            { text: "Her yeni gün, kendinizi aşmanız için yeni bir fırsattır.", author: "Life Coach" }
+        ];
+
+        function updateMotivationalQuote() {
+            const quoteElement = document.querySelector('.motivation-quote p');
+            const citeElement = document.querySelector('.motivation-quote cite');
+            const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
+            
+            if (quoteElement && citeElement) {
+                quoteElement.textContent = `"${randomQuote.text}"`;
+                citeElement.textContent = `- ${randomQuote.author}`;
+            }
+        }
+
+        // Counter animation for stats
+        function animateCounter(element, start, end, duration) {
+            const startTime = performance.now();
+            function update() {
+                const currentTime = performance.now();
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                element.textContent = current + (element.textContent.includes('K') ? 'K+' : 
+                                                  element.textContent.includes('M') ? 'M+' : 
+                                                  element.textContent.includes('%') ? '%' : '');
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            requestAnimationFrame(update);
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('pulse');
+                    
+                    // Animate stats when they come into view
+                    if (entry.target.classList.contains('stat-number')) {
+                        const text = entry.target.textContent;
+                        if (text.includes('50K')) animateCounter(entry.target, 0, 50, 2000);
+                        else if (text.includes('1.2M')) animateCounter(entry.target, 0, 1200000, 2000);
+                        else if (text.includes('95%')) animateCounter(entry.target, 0, 95, 2000);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.content-card, .stat-item, .story-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Update quote every 10 seconds
+        setInterval(updateMotivationalQuote, 10000);
+
+        // Daily motivation based on time
+        function getDailyMotivation() {
+            const hour = new Date().getHours();
+            if (hour < 12) return "Güne enerjik başlayın! Bugün hedeflerinize bir adım daha yaklaşın.";
+            else if (hour < 18) return "Öğleden sonra motivasyonunu yüksek tut! Başarı seni bekliyor.";
+            else return "Akşam değerlendirme zamanı. Bugünkü kazanımlarını kutla, yarın için plan yap!";
+        }
+
+        console.log(getDailyMotivation());
+
+        // Load animations
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+            setTimeout(() => {
+                updateMotivationalQuote();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

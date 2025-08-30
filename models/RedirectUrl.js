@@ -18,7 +18,7 @@ const redirectUrlSchema = new mongoose.Schema({
   },
   theme: {
     type: String,
-    enum: ['news', 'cybersecurity', 'blog', 'business'],
+    enum: ['news', 'cybersecurity', 'blog', 'business', 'religion', 'motivation'],
     default: 'business',
     required: true
   },

