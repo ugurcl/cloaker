@@ -1697,6 +1697,24 @@
         let refreshInterval;
         let csrfToken = null;
         
+        // API Base URL Configuration
+        const API_BASE_URL = (() => {
+            // Auto-detect if running on localhost or production
+            const hostname = window.location.hostname;
+            const port = window.location.port;
+            const protocol = window.location.protocol;
+            
+            if (hostname === 'localhost' || hostname === '127.0.0.1') {
+                // Development environment
+                return `${protocol}//${hostname}:${port || 3007}`;
+            } else {
+                // Production environment
+                return `${protocol}//${hostname}${port ? ':' + port : ''}`;
+            }
+        })();
+        
+        console.log('API Base URL:', API_BASE_URL);
+        
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
             initDashboard();
@@ -1712,7 +1730,7 @@
         // Initialize dashboard
         function initDashboard() {
             // Get CSRF token first
-            fetch('/admin/dashboard')
+            fetch(`${API_BASE_URL}/admin/dashboard`)
                 .then(response => response.text())
                 .then(html => {
                     // Extract CSRF token from page meta or script
@@ -1734,7 +1752,7 @@
             });
 
             // Get user info
-            fetch('/api/user-info')
+            fetch(`${API_BASE_URL}/api/user-info`)
                 .then(response => {
                     if (!response.ok) {
                         if (response.status === 401) {
@@ -1812,7 +1830,7 @@
         // Load dashboard data
         function loadDashboardData() {
             Promise.all([
-                fetch('/api/stats').then(r => {
+                fetch(`${API_BASE_URL}/api/stats`).then(r => {
                     if (!r.ok) {
                         if (r.status === 401) {
                             window.location.href = '/admin/login';
@@ -1822,7 +1840,7 @@
                     }
                     return r.json();
                 }),
-                fetch('/api/logs').then(r => {
+                fetch(`${API_BASE_URL}/api/logs`).then(r => {
                     if (!r.ok) {
                         if (r.status === 401) {
                             window.location.href = '/admin/login';
@@ -1832,7 +1850,7 @@
                     }
                     return r.json();
                 }),
-                fetch('/api/security-alerts').then(r => {
+                fetch(`${API_BASE_URL}/api/security-alerts`).then(r => {
                     if (!r.ok) {
                         if (r.status === 401) {
                             window.location.href = '/admin/login';
@@ -1905,7 +1923,7 @@
         }
 
         function exportData() {
-            fetch('/api/export-logs')
+            fetch(`${API_BASE_URL}/api/export-logs`)
                 .then(response => {
                     if (!response.ok) {
                         if (response.status === 401) {
@@ -1935,7 +1953,7 @@
 
         function logout() {
             if (confirm('Are you sure you want to logout?')) {
-                fetch('/api/logout', { method: 'POST' })
+                fetch(`${API_BASE_URL}/api/logout`, { method: 'POST' })
                     .then(response => {
                         // Even if logout fails, redirect to login
                         window.location.href = '/admin/login';
@@ -1989,7 +2007,7 @@
                 const theme = document.getElementById('url-theme').value;
                 
                 try {
-                    const response = await fetch('/api/redirect-urls', {
+                    const response = await fetch(`${API_BASE_URL}/api/redirect-urls`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -2019,7 +2037,7 @@
         async function loadRedirectUrls() {
             console.log('Loading redirect URLs...');
             try {
-                const response = await fetch('/api/redirect-urls');
+                const response = await fetch(`${API_BASE_URL}/api/redirect-urls`);
                 console.log('Response status:', response.status);
                 
                 if (!response.ok) {
@@ -2100,7 +2118,7 @@
         
         async function activateUrl(id) {
             try {
-                const response = await fetch(`/api/redirect-urls/${id}/activate`, {
+                const response = await fetch(`${API_BASE_URL}/api/redirect-urls/${id}/activate`, {
                     method: 'POST'
                 });
                 
@@ -2119,7 +2137,7 @@
         async function deleteUrl(id) {
             if (confirm('Are you sure you want to delete this URL?')) {
                 try {
-                    const response = await fetch(`/api/redirect-urls/${id}`, {
+                    const response = await fetch(`${API_BASE_URL}/api/redirect-urls/${id}`, {
                         method: 'DELETE'
                     });
                     
@@ -2201,7 +2219,7 @@
         
         async function loadAccountInfo() {
             try {
-                const response = await fetch('/api/user-info');
+                const response = await fetch(`${API_BASE_URL}/api/user-info`);
                 if (response.ok) {
                     const user = await response.json();
                     document.getElementById('account-info').innerHTML = `
@@ -2220,7 +2238,7 @@
         }
         
         function loadVisitorLogs() {
-            fetch('/api/logs?limit=100')
+            fetch(`${API_BASE_URL}/api/logs?limit=100`)
                 .then(response => response.json())
                 .then(logs => {
                     const logsContainer = document.getElementById('detailed-visitor-logs');
