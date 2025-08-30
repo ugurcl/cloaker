@@ -2,26 +2,11 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const crypto = require('crypto');
 
-// Rate limiting for login attempts
-const loginLimiter = rateLimit({
-  windowMs: 5 * 60 * 1000, // 5 minutes
-  max: 10, // limit each IP to 10 requests per windowMs
-  message: {
-    error: 'Too many login attempts, please try again in 5 minutes'
-  },
-  standardHeaders: true,
-  legacyHeaders: false,
-  skipSuccessfulRequests: true
-});
+// Rate limiting disabled - no limits
+const loginLimiter = (req, res, next) => next();
 
-// Rate limiting for API calls
-const apiLimiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 100, // limit each IP to 100 requests per windowMs
-  message: {
-    error: 'Too many API requests, please slow down'
-  }
-});
+// Rate limiting disabled - no limits  
+const apiLimiter = (req, res, next) => next();
 
 // Security headers middleware
 const securityHeaders = helmet({
